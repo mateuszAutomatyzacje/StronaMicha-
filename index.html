@@ -26,6 +26,7 @@
         <a href="#oferta">Oferta</a>
         <a href="#realizacje">Realizacje</a>
         <a href="#opinie">Opinie</a>
+        <a href="#proofs">Proofs</a>
         <a href="#team">Team</a>
         <a href="#kontakt" class="btn btn-small">Darmowa konsultacja</a>
       </nav>
@@ -217,6 +218,15 @@
       </div>
     </section>
 
+    <section id="proofs" class="section section-dark proofs-section">
+      <div class="container">
+        <p class="eyebrow">Proofs / dokumenty / referencje</p>
+        <h2>Pełny podgląd screenów, dokumentów i wiadomości</h2>
+        <p class="section-lead">Tutaj są realne screeny certyfikatów, ubezpieczenia oraz referencji od klientów. Klikasz i przeglądasz całość w osobnym viewerze z efektem 3D slider animation.</p>
+        <div class="proofs-grid" id="proofs-grid"></div>
+      </div>
+    </section>
+
     <section id="kontakt" class="section cta">
       <div class="container cta-box">
         <div>
@@ -233,11 +243,44 @@
   </main>
 
   <footer class="footer">
+    <div class="container footer-main">
+      <div>
+        <strong>BM Bathrooms</strong>
+        <p>Remonty łazienek premium pod klucz, detale, realizacja i efekt końcowy, który robi robotę.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#realizacje">Realizacje</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#proofs">Proofs</a>
+        <a href="#team">Team</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-links footer-links-contact">
+        <a href="tel:+48123456789">+48 123 456 789</a>
+        <a href="mailto:kontakt@bmbathrooms.pl">kontakt@bmbathrooms.pl</a>
+      </div>
+    </div>
     <div class="container footer-row">
       <span>© 2026 BM Bathrooms</span>
       <span>Remonty łazienek premium pod klucz</span>
     </div>
   </footer>
+
+  <div class="proof-viewer" id="proof-viewer" aria-hidden="true">
+    <button class="proof-viewer-close" id="proof-close" aria-label="Zamknij viewer">×</button>
+    <div class="proof-viewer-shell">
+      <button class="proof-arrow proof-arrow-prev" id="proof-prev" aria-label="Poprzedni proof">‹</button>
+      <div class="proof-viewport" id="proof-viewport">
+        <div class="proof-track" id="proof-track"></div>
+      </div>
+      <button class="proof-arrow proof-arrow-next" id="proof-next" aria-label="Następny proof">›</button>
+    </div>
+    <div class="proof-meta">
+      <span id="proof-counter">01 / 01</span>
+      <strong id="proof-title">Proof</strong>
+      <p id="proof-text"></p>
+    </div>
+  </div>
 
   <script type="module" src="main.js"></script>
 </body>

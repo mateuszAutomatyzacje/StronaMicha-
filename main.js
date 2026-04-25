@@ -12,6 +12,22 @@ const imageData = [
   { src: 'assets/img14.jpg', title: 'Głębia materiałów', text: 'Kadr oparty na fakturze, świetle i warstwach, żeby galeria nie wpadała w powtarzalność.' }
 ];
 
+const proofData = [
+  { src: 'assets/proofs/proof01.jpg', title: 'Proof 01', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof02.jpg', title: 'Proof 02', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof03.jpg', title: 'Proof 03', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof04.jpg', title: 'Proof 04', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof05.jpg', title: 'Proof 05', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof07.jpg', title: 'Proof 06', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof08.jpg', title: 'Proof 07', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof10.jpg', title: 'Proof 08', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof13.jpg', title: 'Proof 09', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof14.jpg', title: 'Proof 10', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof15.jpg', title: 'Proof 11', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof16.jpg', title: 'Proof 12', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
+  { src: 'assets/proofs/proof24.jpg', title: 'Proof 13', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' }
+];
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const heroPanels = [...document.querySelectorAll('.reveal-panel')];
 const heroProgress = document.getElementById('hero-progress');
@@ -22,6 +38,15 @@ const title = document.getElementById('slider-title');
 const text = document.getElementById('slider-text');
 const prevBtn = document.getElementById('carousel-prev');
 const nextBtn = document.getElementById('carousel-next');
+const proofsGrid = document.getElementById('proofs-grid');
+const proofViewer = document.getElementById('proof-viewer');
+const proofTrack = document.getElementById('proof-track');
+const proofCounter = document.getElementById('proof-counter');
+const proofTitle = document.getElementById('proof-title');
+const proofText = document.getElementById('proof-text');
+const proofPrev = document.getElementById('proof-prev');
+const proofNext = document.getElementById('proof-next');
+const proofClose = document.getElementById('proof-close');
 
 let activeHero = 0;
 let heroInterval;
@@ -30,6 +55,8 @@ let autoplay;
 let startX = 0;
 let endX = 0;
 let cards = [];
+let proofSlides = [];
+let activeProof = 0;
 
 function initHeroScene() {
   const canvas = document.getElementById('hero-webgl');
@@ -332,6 +359,100 @@ function initCarousel() {
   }, { passive: true });
 }
 
+function initProofs() {
+  if (!proofsGrid || !proofTrack) return;
+
+  proofsGrid.innerHTML = proofData.map((item, index) => `
+    <button class="proof-card reveal-up" data-proof-index="${index}" aria-label="Otwórz proof ${index + 1}">
+      <img src="${item.src}" alt="${item.title}">
+      <div class="proof-card-copy">
+        <span>Proof ${String(index + 1).padStart(2, '0')}</span>
+        <strong>${item.title}</strong>
+      </div>
+    </button>
+  `).join('');
+
+  proofTrack.innerHTML = proofData.map((item, index) => `
+    <article class="proof-slide" data-proof-slide="${index}">
+      <img src="${item.src}" alt="${item.title}">
+    </article>
+  `).join('');
+  proofSlides = [...proofTrack.querySelectorAll('.proof-slide')];
+
+  const renderProofs = (immediate = false) => {
+    proofSlides.forEach((slide, index) => {
+      let offset = index - activeProof;
+      if (offset > proofData.length / 2) offset -= proofData.length;
+      if (offset < -proofData.length / 2) offset += proofData.length;
+      const abs = Math.abs(offset);
+      const direction = Math.sign(offset) || 1;
+      const translateX = abs === 0 ? 0 : direction * (160 + (abs - 1) * 110);
+      const translateZ = -abs * 180;
+      const rotateY = direction * -20;
+      gsap.to(slide, {
+        xPercent: -50,
+        x: translateX,
+        z: translateZ,
+        rotateY,
+        scale: 1 - abs * 0.06,
+        opacity: abs > 3 ? 0 : Math.max(0.15, 1 - abs * 0.18),
+        duration: immediate || prefersReducedMotion ? 0 : 0.9,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
+      slide.style.zIndex = String(100 - abs);
+    });
+    const item = proofData[activeProof];
+    proofCounter.textContent = `${String(activeProof + 1).padStart(2, '0')} / ${String(proofData.length).padStart(2, '0')}`;
+    proofTitle.textContent = item.title;
+    proofText.textContent = item.text;
+  };
+
+  const openProofViewer = index => {
+    activeProof = index;
+    proofViewer.classList.add('is-open');
+    proofViewer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    renderProofs();
+  };
+
+  const closeProofViewer = () => {
+    proofViewer.classList.remove('is-open');
+    proofViewer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  proofsGrid.querySelectorAll('[data-proof-index]').forEach(btn => {
+    btn.addEventListener('click', () => openProofViewer(Number(btn.dataset.proofIndex || 0)));
+  });
+  proofPrev?.addEventListener('click', () => {
+    activeProof = (activeProof - 1 + proofData.length) % proofData.length;
+    renderProofs();
+  });
+  proofNext?.addEventListener('click', () => {
+    activeProof = (activeProof + 1) % proofData.length;
+    renderProofs();
+  });
+  proofClose?.addEventListener('click', closeProofViewer);
+  proofViewer?.addEventListener('click', event => {
+    if (event.target === proofViewer) closeProofViewer();
+  });
+  window.addEventListener('keydown', event => {
+    if (!proofViewer?.classList.contains('is-open')) return;
+    if (event.key === 'Escape') closeProofViewer();
+    if (event.key === 'ArrowLeft') {
+      activeProof = (activeProof - 1 + proofData.length) % proofData.length;
+      renderProofs();
+    }
+    if (event.key === 'ArrowRight') {
+      activeProof = (activeProof + 1) % proofData.length;
+      renderProofs();
+    }
+  });
+
+  renderProofs(true);
+}
+
 function initRevealObserver() {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -364,5 +485,6 @@ window.addEventListener('load', () => {
   initHeroScene();
   initHeroAnimations();
   initCarousel();
+  initProofs();
   initRevealObserver();
 });

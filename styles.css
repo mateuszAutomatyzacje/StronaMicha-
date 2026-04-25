@@ -488,6 +488,57 @@ h1 {
 .section-team {
   background: linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,.06));
 }
+.proofs-section .section-lead {
+  max-width: 860px;
+  margin-bottom: 28px;
+}
+.proofs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.proof-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+  box-shadow: 0 22px 60px rgba(0,0,0,.22);
+  appearance: none;
+}
+.proof-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+.proof-card:hover img { transform: scale(1.06); }
+.proof-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, transparent, rgba(7,9,14,.82));
+}
+.proof-card-copy {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 1;
+  display: grid;
+  gap: 5px;
+}
+.proof-card-copy span {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.62);
+}
+.proof-card-copy strong { font-size: .98rem; color: white; }
 .quote-card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -544,6 +595,24 @@ h1 {
   color: #7a818e;
   padding: 32px 0 40px;
 }
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.3fr .8fr .8fr;
+  gap: 28px;
+  padding-bottom: 24px;
+}
+.footer-main p {
+  color: #7a818e;
+  line-height: 1.7;
+  margin: 10px 0 0;
+  max-width: 520px;
+}
+.footer-links {
+  display: grid;
+  gap: 10px;
+}
+.footer-links a { color: #7a818e; }
+.footer-links a:hover { color: #1f1a17; }
 .footer-row {
   border-top: 1px solid rgba(20, 23, 29, 0.08);
   padding-top: 20px;
@@ -551,6 +620,96 @@ h1 {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+}
+.proof-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 36px 18px;
+  background: rgba(5,7,11,.84);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.proof-viewer.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.proof-viewer-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: white;
+  font-size: 1.8rem;
+}
+.proof-viewer-shell {
+  width: min(1260px, 100%);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.proof-viewport {
+  min-height: min(72vh, 820px);
+  perspective: 1800px;
+  overflow: hidden;
+}
+.proof-track {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.proof-slide {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(420px, 72vw);
+  height: min(72vh, 820px);
+  border-radius: 28px;
+  overflow: hidden;
+  background: #10141c;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 28px 80px rgba(0,0,0,.42);
+}
+.proof-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0a0d12;
+}
+.proof-arrow {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: white;
+  font-size: 2rem;
+}
+.proof-meta {
+  width: min(1260px, 100%);
+  margin-top: 18px;
+  color: white;
+}
+.proof-meta span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .1em;
+  font-weight: 700;
+}
+.proof-meta p {
+  margin: 10px 0 0;
+  color: rgba(255,255,255,.74);
+  max-width: 720px;
 }
 
 @keyframes immersiveSweep {
@@ -564,6 +723,8 @@ h1 {
   .slider-head,
   .grid.two,
   .grid.three,
+  .proofs-grid,
+  .footer-main,
   .cta-box {
     grid-template-columns: 1fr;
   }
@@ -592,14 +753,20 @@ h1 {
     align-items: stretch;
   }
   .hero-stage-chip { width: fit-content; }
-  .carousel-wrap {
+  .carousel-wrap,
+  .proof-viewer-shell {
     grid-template-columns: 1fr;
   }
-  .carousel-arrow {
+  .carousel-arrow,
+  .proof-arrow {
     display: none;
   }
   .carousel-card {
     width: min(320px, 82vw);
+  }
+  .proof-slide {
+    width: min(330px, 88vw);
+    height: 64vh;
   }
 }
 
