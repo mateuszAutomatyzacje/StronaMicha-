@@ -112,13 +112,22 @@ nav a { color: rgba(255, 255, 255, 0.84); font-weight: 600; }
   align-items: center;
 }
 .hero-backdrop,
+.hero-webgl,
 .hero-backdrop-image,
 .hero-backdrop-vignette,
 .hero-backdrop-grid {
   position: absolute;
   inset: 0;
 }
+.hero-webgl {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: .9;
+  pointer-events: none;
+}
 .hero-backdrop-image {
+  z-index: 1;
   background-image: linear-gradient(120deg, rgba(7, 9, 15, 0.28), rgba(7, 9, 15, 0.66)), url('assets/img18.jpg');
   background-size: cover;
   background-position: center;
@@ -126,16 +135,18 @@ nav a { color: rgba(255, 255, 255, 0.84); font-weight: 600; }
   filter: saturate(1.04) contrast(1.02);
 }
 .hero-backdrop-vignette {
-  background: radial-gradient(circle at 70% 40%, rgba(217, 178, 102, 0.14), transparent 32%), linear-gradient(180deg, rgba(7, 8, 12, 0.18), rgba(7, 8, 12, 0.7));
+  z-index: 2;
+  background: radial-gradient(circle at 70% 40%, rgba(217, 178, 102, 0.14), transparent 32%), linear-gradient(180deg, rgba(7, 8, 12, 0.14), rgba(7, 8, 12, 0.68));
 }
 .hero-backdrop-grid {
+  z-index: 3;
   background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(180deg, rgba(0,0,0,.65), transparent 92%);
 }
 .hero-shell {
   position: relative;
-  z-index: 1;
+  z-index: 4;
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(420px, .98fr);
   gap: 40px;
@@ -359,6 +370,7 @@ h1 {
   position: relative;
   height: 100%;
   transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.19,1,.22,1);
 }
 .carousel-card {
   position: absolute;

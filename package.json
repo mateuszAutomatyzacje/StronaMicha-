@@ -19,5 +19,9 @@
   "homepage": "https://github.com/mateuszAutomatyzacje/StronaMicha-#readme",
   "devDependencies": {
     "playwright": "^1.59.1"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "three": "^0.184.0"
   }
 }
