@@ -3,52 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nowoczesne łazienki pod klucz</title>
-  <meta name="description" content="Projektowanie i remonty łazienek pod klucz. Nowoczesne realizacje, wykończenie premium, szybka wycena i terminowa dostawa.">
+  <title>BM Bathrooms, Łazienki premium pod klucz</title>
+  <meta name="description" content="Remonty i wykończenia łazienek premium pod klucz. Realizacje z efektem wow, przemyślany projekt, dokładne wykonanie i dopracowany detal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="page-noise" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="container nav">
-      <div class="brand">Michał Łazienki</div>
+      <a href="#start" class="brand-wrap" aria-label="BM Bathrooms, strona główna">
+        <img src="assets/logo.png" alt="BM Bathrooms" class="brand-logo">
+        <span class="brand-copy">
+          <strong>BM Bathrooms</strong>
+          <small>Łazienki premium pod klucz</small>
+        </span>
+      </a>
       <nav>
         <a href="#oferta">Oferta</a>
         <a href="#realizacje">Realizacje</a>
         <a href="#proces">Proces</a>
-        <a href="#kontakt" class="btn btn-small">Bezpłatna konsultacja</a>
+        <a href="#kontakt" class="btn btn-small">Darmowa konsultacja</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Remonty i wykończenia łazienek</p>
-          <h1>Łazienka, która wygląda premium i jest zrobiona porządnie.</h1>
-          <p class="lead">Projekt, wykonanie i wykończenie pod klucz. Dla klientów, którzy chcą efektu wow bez chaosu, opóźnień i gonienia ekip.</p>
+    <section id="start" class="hero hero-immersive">
+      <div class="hero-backdrop" aria-hidden="true">
+        <div class="hero-backdrop-image"></div>
+        <div class="hero-backdrop-vignette"></div>
+        <div class="hero-backdrop-grid"></div>
+      </div>
+
+      <div class="container hero-shell">
+        <div class="hero-copy reveal-on-load">
+          <p class="eyebrow">Immersive reveal, wykonanie premium, efekt wow</p>
+          <h1>Wchodzisz na stronę tak, jak klient wchodzi do gotowej łazienki.</h1>
+          <p class="lead">Najpierw mocne wejście na realizację, potem płynne przejście w przestrzenny slider 3D. Ta sekcja jest zbudowana na prawdziwych zdjęciach realizacji, żeby od pierwszych sekund sprzedawać jakość wykonania.</p>
           <div class="hero-actions">
             <a href="#kontakt" class="btn">Umów konsultację</a>
             <a href="#realizacje" class="btn btn-ghost">Zobacz realizacje</a>
           </div>
           <ul class="trust-list">
-            <li>Dokładna wycena przed startem</li>
-            <li>Jasny harmonogram prac</li>
-            <li>Pomoc w doborze materiałów</li>
+            <li>Realne zdjęcia wykonanych łazienek</li>
+            <li>Od stanu surowego do gotowego efektu premium</li>
+            <li>Detale, oświetlenie, armatura i duże formaty</li>
           </ul>
         </div>
-        <div class="hero-card">
-          <div class="card-badge">Dla mieszkań i domów</div>
-          <h2>Kompleksowe łazienki pod klucz</h2>
-          <p>Od skucia starej łazienki po finalny montaż armatury, zabudów i oświetlenia.</p>
-          <div class="stats">
-            <div><strong>Premium</strong><span>estetyka</span></div>
-            <div><strong>Kompleksowo</strong><span>jedna ekipa</span></div>
-            <div><strong>Terminowo</strong><span>realny plan</span></div>
+
+        <div class="hero-stage reveal-on-load" aria-label="Wybrane realizacje łazienek">
+          <div class="reveal-stack" id="reveal-stack">
+            <article class="reveal-panel is-active" style="--bg:url('assets/img18.jpg')">
+              <div class="reveal-info"><span>Realizacja premium</span><strong>Wanna wolnostojąca, światło i przestrzeń</strong></div>
+            </article>
+            <article class="reveal-panel" style="--bg:url('assets/img22.jpg')">
+              <div class="reveal-info"><span>Minimal modern</span><strong>Miedź, kamień, czysta geometria</strong></div>
+            </article>
+            <article class="reveal-panel" style="--bg:url('assets/img20.jpg')">
+              <div class="reveal-info"><span>Signature finish</span><strong>Wzór, kontrast i detal armatury</strong></div>
+            </article>
           </div>
+
+          <div class="hero-stage-ui" aria-hidden="true">
+            <div class="hero-stage-chip">immersive reveal animation</div>
+            <div class="hero-stage-progress"><span id="hero-progress"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="realizacje" class="section section-dark section-slider">
+      <div class="container slider-head">
+        <div>
+          <p class="eyebrow">3D slider animation</p>
+          <h2>Galeria, która nie jest martwą siatką zdjęć</h2>
+        </div>
+        <p class="section-lead">Slider obraca realizacje w lekkim 3D, reaguje na kursor i buduje wrażenie głębi. Na mobile działa jako płynna karuzela dotykowa.</p>
+      </div>
+
+      <div class="container carousel-wrap">
+        <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Poprzedni slajd">‹</button>
+        <div class="carousel-viewport" id="carousel-viewport">
+          <div class="carousel-track" id="carousel-track"></div>
+        </div>
+        <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Następny slajd">›</button>
+      </div>
+
+      <div class="container slider-meta">
+        <div class="slider-caption">
+          <span id="slider-counter">01 / 12</span>
+          <strong id="slider-title">Łazienka premium</strong>
+          <p id="slider-text">Dobór faktur, światła i armatury tak, żeby zdjęcie robiło robotę jeszcze zanim klient przeczyta ofertę.</p>
         </div>
       </div>
     </section>
@@ -56,44 +105,32 @@
     <section id="oferta" class="section">
       <div class="container">
         <p class="eyebrow">Oferta</p>
-        <h2>Co robimy</h2>
+        <h2>Co klient kupuje naprawdę</h2>
         <div class="grid three">
-          <article class="tile">
-            <h3>Remont łazienki od A do Z</h3>
-            <p>Demontaż, hydraulika, elektryka, płytki, biały montaż i wykończenie.</p>
+          <article class="tile reveal-up">
+            <h3>Kompleksowy remont łazienki</h3>
+            <p>Demontaż, instalacje, hydroizolacja, płytki, zabudowy, armatura, oświetlenie i finalne wykończenie.</p>
           </article>
-          <article class="tile">
-            <h3>Łazienki premium</h3>
-            <p>Nowoczesne strefy prysznicowe, zabudowy, duże formaty i dopracowane detale.</p>
+          <article class="tile reveal-up">
+            <h3>Efekt premium bez chaosu</h3>
+            <p>Klient nie kupuje tylko robocizny. Kupuje spokój, porządek, estetykę i efekt końcowy, który robi wrażenie na żywo.</p>
           </article>
-          <article class="tile">
-            <h3>Doradztwo materiałowe</h3>
-            <p>Pomagamy dobrać płytki, armaturę i rozwiązania, które będą wyglądać dobrze i działać latami.</p>
+          <article class="tile reveal-up">
+            <h3>Od koncepcji do detalu</h3>
+            <p>Pomoc przy doborze materiałów, proporcji, kolorystyki i rozwiązań praktycznych, które będą dobrze wyglądać przez lata.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="realizacje" class="section section-dark">
-      <div class="container">
-        <p class="eyebrow">Realizacje</p>
-        <h2>Miejsce na zdjęcia najlepszych łazienek</h2>
-        <div class="grid three">
-          <div class="gallery-card"><span>Realizacja 01</span></div>
-          <div class="gallery-card"><span>Realizacja 02</span></div>
-          <div class="gallery-card"><span>Realizacja 03</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proces" class="section">
+    <section id="proces" class="section section-process">
       <div class="container">
         <p class="eyebrow">Proces</p>
         <h2>Jak wygląda współpraca</h2>
         <div class="grid three steps">
-          <article class="tile"><strong>1.</strong><h3>Rozmowa i potrzeby</h3><p>Krótka konsultacja, zakres prac i wstępny kierunek wizualny.</p></article>
-          <article class="tile"><strong>2.</strong><h3>Wycena i plan</h3><p>Otrzymujesz jasny kosztorys, zakres i harmonogram.</p></article>
-          <article class="tile"><strong>3.</strong><h3>Realizacja</h3><p>Wchodzimy na budowę i dowozimy efekt końcowy bez zbędnego chaosu.</p></article>
+          <article class="tile reveal-up"><strong>1</strong><h3>Rozmowa i zdjęcia</h3><p>Zbieramy potrzeby, styl, budżet i zakres. Już na tym etapie wiadomo, czy idziemy w minimal premium, kamień, kontrast czy coś bardziej odważnego.</p></article>
+          <article class="tile reveal-up"><strong>2</strong><h3>Wycena i harmonogram</h3><p>Klient dostaje jasny plan prac, etapy i widełki materiałowe. Bez chaosu i bez zgadywania, co będzie dalej.</p></article>
+          <article class="tile reveal-up"><strong>3</strong><h3>Realizacja i odbiór</h3><p>Wchodzicie na budowę, prowadzicie projekt do końca i oddajecie gotową łazienkę, która wygląda jak z dobrze zrobionego portfolio.</p></article>
         </div>
       </div>
     </section>
@@ -102,12 +139,12 @@
       <div class="container cta-box">
         <div>
           <p class="eyebrow">Kontakt</p>
-          <h2>Chcesz wycenić łazienkę?</h2>
-          <p>Napisz lub zadzwoń. Przygotujemy wstępną konsultację i powiemy, jak najlepiej ruszyć z tematem.</p>
+          <h2>Chcesz podobną łazienkę u siebie?</h2>
+          <p>Napisz, podeślij zdjęcia obecnej przestrzeni i opowiedz, jaki efekt chcesz osiągnąć. Wstępnie ocenimy zakres i najlepszy kierunek realizacji.</p>
         </div>
         <div class="cta-actions">
           <a href="tel:+48123456789" class="btn">Zadzwoń teraz</a>
-          <a href="mailto:kontakt@twojalazienka.pl" class="btn btn-ghost">Napisz maila</a>
+          <a href="mailto:kontakt@bmbathrooms.pl" class="btn btn-ghost">Napisz maila</a>
         </div>
       </div>
     </section>
@@ -115,8 +152,8 @@
 
   <footer class="footer">
     <div class="container footer-row">
-      <span>© 2026 Michał Łazienki</span>
-      <span>Remonty łazienek pod klucz</span>
+      <span>© 2026 BM Bathrooms</span>
+      <span>Remonty łazienek premium pod klucz</span>
     </div>
   </footer>
 
