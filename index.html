@@ -90,19 +90,28 @@
 
     <section id="realizacje" class="section section-dark section-slider">
       <div class="container slider-head">
-        <div>
+        <div class="slider-head-copy">
           <p class="eyebrow">3D slider animation</p>
-          <h2>Galeria, która nie jest martwą siatką zdjęć</h2>
+          <h2>Galeria, która wygląda jak premium showcase, nie jak zwykły katalog</h2>
         </div>
-        <p class="section-lead">Slider obraca realizacje w lekkim 3D, reaguje na kursor i buduje wrażenie głębi. Na mobile działa jako płynna karuzela dotykowa.</p>
+        <div class="slider-side-panel reveal-up">
+          <p class="section-lead">Research first: mocna typografia, spokojny rytm, motion jako akcent i czytelna nawigacja. Dlatego ta sekcja ma teraz bardziej editorial układ, większą przestrzeń i wyraźniejsze sterowanie.</p>
+          <div class="slider-side-stats">
+            <div><strong>3D</strong><span>depth motion</span></div>
+            <div><strong>drag</strong><span>mouse / touch</span></div>
+            <div><strong>click</strong><span>card navigation</span></div>
+          </div>
+        </div>
       </div>
 
       <div class="container carousel-wrap">
-        <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Poprzedni slajd">‹</button>
-        <div class="carousel-viewport" id="carousel-viewport">
-          <div class="carousel-track" id="carousel-track"></div>
+        <div class="carousel-shell">
+          <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Poprzedni slajd">‹</button>
+          <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-track" id="carousel-track"></div>
+          </div>
+          <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Następny slajd">›</button>
         </div>
-        <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Następny slajd">›</button>
       </div>
 
       <div class="container slider-meta">

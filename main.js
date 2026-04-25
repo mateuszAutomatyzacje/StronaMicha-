@@ -62,6 +62,7 @@ let proofSlides = [];
 let activeProof = 0;
 let carouselDragStartX = 0;
 let carouselDragging = false;
+let carouselPointerId = null;
 let proofDragStartX = 0;
 let proofDragging = false;
 
@@ -292,6 +293,7 @@ function renderCarousel(immediate = false) {
       });
     }
     card.style.zIndex = String(100 - abs);
+    card.classList.toggle('is-active', abs === 0);
   });
 
   const item = imageData[activeIndex];
@@ -307,14 +309,13 @@ function goToSlide(index) {
 
 function startAutoplay() {
   clearInterval(autoplay);
-  if (prefersReducedMotion) return;
-  autoplay = setInterval(() => goToSlide(activeIndex + 1), 3600);
 }
 
 function onCarouselPointerEnd(clientX) {
   if (!carouselDragging) return;
   const delta = clientX - carouselDragStartX;
   carouselDragging = false;
+  carouselPointerId = null;
   if (Math.abs(delta) > 30) {
     goToSlide(delta < 0 ? activeIndex + 1 : activeIndex - 1);
     startAutoplay();
@@ -326,8 +327,18 @@ function initCarousel() {
   renderCarousel(true);
   startAutoplay();
 
-  prevBtn?.addEventListener('click', () => { goToSlide(activeIndex - 1); startAutoplay(); });
-  nextBtn?.addEventListener('click', () => { goToSlide(activeIndex + 1); startAutoplay(); });
+  prevBtn?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    goToSlide(activeIndex - 1);
+    startAutoplay();
+  });
+  nextBtn?.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    goToSlide(activeIndex + 1);
+    startAutoplay();
+  });
 
   viewport?.addEventListener('mousemove', event => {
     if (prefersReducedMotion || carouselDragging) return;
@@ -360,13 +371,37 @@ function initCarousel() {
     });
   });
 
+  track?.addEventListener('click', event => {
+    const card = event.target.closest('.carousel-card');
+    if (!card || carouselDragging) return;
+    const nextIndex = Number(card.dataset.index || 0);
+    if (nextIndex !== activeIndex) {
+      goToSlide(nextIndex);
+      startAutoplay();
+    }
+  });
+
+  viewport?.addEventListener('wheel', event => {
+    if (Math.abs(event.deltaY) < 8 && Math.abs(event.deltaX) < 8) return;
+    event.preventDefault();
+    goToSlide((Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY) > 0 ? activeIndex + 1 : activeIndex - 1);
+    startAutoplay();
+  }, { passive: false });
+
   viewport?.addEventListener('pointerdown', event => {
     carouselDragging = true;
+    carouselPointerId = event.pointerId;
     carouselDragStartX = event.clientX;
     viewport.setPointerCapture(event.pointerId);
   });
   viewport?.addEventListener('pointerup', event => onCarouselPointerEnd(event.clientX));
-  viewport?.addEventListener('pointercancel', () => { carouselDragging = false; });
+  viewport?.addEventListener('pointerleave', event => {
+    if (carouselDragging && carouselPointerId === event.pointerId) onCarouselPointerEnd(event.clientX);
+  });
+  viewport?.addEventListener('pointercancel', () => {
+    carouselDragging = false;
+    carouselPointerId = null;
+  });
 }
 
 function renderProofs(immediate = false) {
