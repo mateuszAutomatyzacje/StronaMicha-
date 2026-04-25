@@ -164,7 +164,9 @@ function createCards() {
   if (!track) return;
   track.innerHTML = imageData.map((item, index) => `
     <article class="carousel-card" data-index="${index}">
-      <img src="${item.src}" alt="Realizacja łazienki ${index + 1}">
+      <div class="carousel-card-media">
+        <img src="${item.src}" alt="Realizacja łazienki ${index + 1}">
+      </div>
       <div class="carousel-card-label">
         <span>Realizacja ${String(index + 1).padStart(2, '0')}</span>
         <strong>${item.title}</strong>
@@ -211,6 +213,27 @@ function renderCarousel(immediate = false) {
       ease: 'power3.inOut',
       overwrite: true
     });
+    const media = card.querySelector('.carousel-card-media');
+    const image = card.querySelector('img');
+    if (media && image) {
+      const mediaBaseX = direction * abs * -14;
+      const imageBaseX = direction * abs * 2.6;
+      media.dataset.baseX = String(mediaBaseX);
+      image.dataset.baseX = String(imageBaseX);
+      gsap.to(media, {
+        x: mediaBaseX,
+        duration: immediate || prefersReducedMotion ? 0 : 1.1,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
+      gsap.to(image, {
+        scale: abs === 0 ? 1.08 : 1.16 + abs * 0.015,
+        xPercent: imageBaseX,
+        duration: immediate || prefersReducedMotion ? 0 : 1.1,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
+    }
     card.style.zIndex = String(100 - abs);
   });
 
@@ -254,14 +277,45 @@ function initCarousel() {
     gsap.to(track, {
       rotateY: x * 8,
       rotateX: y * -5,
+      x: x * 26,
       duration: 0.7,
       ease: 'power3.out',
       overwrite: true
     });
+    cards.forEach((card, index) => {
+      const offset = Math.abs(index - activeIndex);
+      const media = card.querySelector('.carousel-card-media');
+      const image = card.querySelector('img');
+      if (!media || !image) return;
+      const depth = Math.max(0, 1 - Math.min(offset, 3) * 0.22);
+      const mediaBaseX = Number(media.dataset.baseX || 0);
+      const imageBaseX = Number(image.dataset.baseX || 0);
+      gsap.to(media, {
+        y: y * 22 * depth,
+        x: mediaBaseX + x * 10 * depth,
+        duration: 0.75,
+        ease: 'power3.out',
+        overwrite: true
+      });
+      gsap.to(image, {
+        xPercent: imageBaseX + x * 7 * depth,
+        yPercent: y * 8 * depth,
+        duration: 0.75,
+        ease: 'power3.out',
+        overwrite: true
+      });
+    });
   });
 
   viewport?.addEventListener('mouseleave', () => {
-    gsap.to(track, { rotateY: 0, rotateX: 0, duration: 0.8, ease: 'power3.out', overwrite: true });
+    gsap.to(track, { rotateY: 0, rotateX: 0, x: 0, duration: 0.8, ease: 'power3.out', overwrite: true });
+    cards.forEach(card => {
+      const media = card.querySelector('.carousel-card-media');
+      const image = card.querySelector('img');
+      if (!media || !image) return;
+      gsap.to(media, { y: 0, x: Number(media.dataset.baseX || 0), duration: 0.85, ease: 'power3.out', overwrite: true });
+      gsap.to(image, { xPercent: Number(image.dataset.baseX || 0), yPercent: 0, duration: 0.85, ease: 'power3.out', overwrite: true });
+    });
   });
 
   viewport?.addEventListener('touchstart', event => {
