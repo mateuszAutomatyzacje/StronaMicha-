@@ -29,6 +29,10 @@ const proofData = [
 ];
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const body = document.body;
+const siteLoader = document.getElementById('site-loader');
+const siteLoaderProgress = document.getElementById('site-loader-progress');
+const siteLoaderLabel = document.getElementById('site-loader-label');
 const heroPanels = [...document.querySelectorAll('.reveal-panel')];
 const heroProgress = document.getElementById('hero-progress');
 const track = document.getElementById('carousel-track');
@@ -47,16 +51,56 @@ const proofText = document.getElementById('proof-text');
 const proofPrev = document.getElementById('proof-prev');
 const proofNext = document.getElementById('proof-next');
 const proofClose = document.getElementById('proof-close');
+const phaseCards = [...document.querySelectorAll('[data-phase-card]')];
 
 let activeHero = 0;
 let heroInterval;
 let activeIndex = 0;
 let autoplay;
-let startX = 0;
-let endX = 0;
 let cards = [];
 let proofSlides = [];
 let activeProof = 0;
+let carouselDragStartX = 0;
+let carouselDragging = false;
+let proofDragStartX = 0;
+let proofDragging = false;
+
+function runLoader() {
+  body.classList.add('is-loading');
+  if (!siteLoader || !siteLoaderProgress || !siteLoaderLabel || prefersReducedMotion) {
+    body.classList.add('is-loaded');
+    body.classList.remove('is-loading');
+    siteLoader?.classList.add('is-hidden');
+    return Promise.resolve();
+  }
+
+  return new Promise(resolve => {
+    const state = { value: 0 };
+    gsap.to(state, {
+      value: 100,
+      duration: 1.7,
+      ease: 'power2.inOut',
+      onUpdate: () => {
+        const val = Math.round(state.value);
+        siteLoaderProgress.style.width = `${val}%`;
+        siteLoaderLabel.textContent = `${val}%`;
+      },
+      onComplete: () => {
+        gsap.to(siteLoader, {
+          opacity: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          onComplete: () => {
+            siteLoader.classList.add('is-hidden');
+            body.classList.remove('is-loading');
+            body.classList.add('is-loaded');
+            resolve();
+          }
+        });
+      }
+    });
+  });
+}
 
 function initHeroScene() {
   const canvas = document.getElementById('hero-webgl');
@@ -90,9 +134,10 @@ function initHeroScene() {
   const particles = new THREE.Points(particlesGeometry, particlesMaterial);
   scene.add(particles);
 
-  const planeGeometry = new THREE.PlaneGeometry(12, 7, 1, 1);
-  const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xd9b266, transparent: true, opacity: 0.055 });
-  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(12, 7, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xd9b266, transparent: true, opacity: 0.055 })
+  );
   plane.rotation.z = -0.22;
   plane.position.set(1.3, 0.2, -1.5);
   scene.add(plane);
@@ -153,10 +198,6 @@ function setHeroSlide(nextIndex, immediate = false) {
     });
   }
 
-  if (!immediate && currentPanel && currentPanel !== nextPanel) {
-    gsap.fromTo(nextPanel, { scale: 1.035 }, { scale: 1, duration: 1.2, ease: 'power3.out', overwrite: true });
-  }
-
   activeHero = nextIndex;
 }
 
@@ -170,11 +211,10 @@ function startHeroAutoplay() {
 
 function initHeroAnimations() {
   setHeroSlide(0, true);
-
   if (!prefersReducedMotion) {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.from('.topbar', { y: -18, opacity: 0, duration: 0.65 })
-      .from('.hero-copy .eyebrow', { y: 22, opacity: 0, duration: 0.6 }, '-=0.3')
+      .from('.hero-copy .eyebrow', { y: 22, opacity: 0, duration: 0.6 }, '-=0.2')
       .from('.hero-copy h1', { y: 34, opacity: 0, duration: 0.85 }, '-=0.38')
       .from('.hero-copy .lead', { y: 20, opacity: 0, duration: 0.75 }, '-=0.55')
       .from('.hero-actions a', { y: 18, opacity: 0, stagger: 0.08, duration: 0.55 }, '-=0.48')
@@ -183,7 +223,6 @@ function initHeroAnimations() {
       .from('.hero-stage-chip', { opacity: 0, x: -24, duration: 0.6 }, '-=0.5')
       .from('.hero-stage-progress', { opacity: 0, x: 24, duration: 0.6 }, '<');
   }
-
   startHeroAutoplay();
 }
 
@@ -212,34 +251,30 @@ function renderCarousel(immediate = false) {
     if (offset < -imageData.length / 2) offset += imageData.length;
 
     const abs = Math.abs(offset);
-    const clamped = Math.min(abs, 4);
     const direction = Math.sign(offset) || 1;
     const baseX = abs === 0 ? 0 : 120 + (abs - 1) * 108;
     const translateX = direction * baseX;
     const translateZ = -abs * 150;
     const rotateY = direction * -22;
-    const scale = 1 - abs * 0.08;
-    const opacity = abs > 4 ? 0 : Math.max(0.16, 1 - abs * 0.17);
-    const blur = abs === 0 ? 0 : clamped * 1.35;
-    const brightness = abs === 0 ? 1 : 1 - abs * 0.06;
 
     gsap.to(card, {
       xPercent: -50,
       x: translateX,
       z: translateZ,
       rotateY,
-      scale,
-      opacity,
+      scale: 1 - abs * 0.08,
+      opacity: abs > 4 ? 0 : Math.max(0.16, 1 - abs * 0.17),
       duration: immediate || prefersReducedMotion ? 0 : 1,
       ease: 'power3.inOut',
       overwrite: true
     });
     gsap.to(card, {
-      filter: abs === 0 ? 'blur(0px) saturate(1) brightness(1)' : `blur(${blur}px) saturate(${1 - abs * 0.06}) brightness(${brightness})`,
+      filter: abs === 0 ? 'blur(0px) saturate(1) brightness(1)' : `blur(${Math.min(abs, 4) * 1.35}px) saturate(${1 - abs * 0.06}) brightness(${1 - abs * 0.06})`,
       duration: immediate || prefersReducedMotion ? 0 : 1,
       ease: 'power3.inOut',
       overwrite: true
     });
+
     const media = card.querySelector('.carousel-card-media');
     const image = card.querySelector('img');
     if (media && image) {
@@ -247,12 +282,7 @@ function renderCarousel(immediate = false) {
       const imageBaseX = direction * abs * 2.6;
       media.dataset.baseX = String(mediaBaseX);
       image.dataset.baseX = String(imageBaseX);
-      gsap.to(media, {
-        x: mediaBaseX,
-        duration: immediate || prefersReducedMotion ? 0 : 1.1,
-        ease: 'power3.inOut',
-        overwrite: true
-      });
+      gsap.to(media, { x: mediaBaseX, duration: immediate || prefersReducedMotion ? 0 : 1.1, ease: 'power3.inOut', overwrite: true });
       gsap.to(image, {
         scale: abs === 0 ? 1.08 : 1.16 + abs * 0.015,
         xPercent: imageBaseX,
@@ -281,34 +311,30 @@ function startAutoplay() {
   autoplay = setInterval(() => goToSlide(activeIndex + 1), 3600);
 }
 
+function onCarouselPointerEnd(clientX) {
+  if (!carouselDragging) return;
+  const delta = clientX - carouselDragStartX;
+  carouselDragging = false;
+  if (Math.abs(delta) > 30) {
+    goToSlide(delta < 0 ? activeIndex + 1 : activeIndex - 1);
+    startAutoplay();
+  }
+}
+
 function initCarousel() {
   createCards();
   renderCarousel(true);
   startAutoplay();
 
-  prevBtn?.addEventListener('click', () => {
-    goToSlide(activeIndex - 1);
-    startAutoplay();
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    goToSlide(activeIndex + 1);
-    startAutoplay();
-  });
+  prevBtn?.addEventListener('click', () => { goToSlide(activeIndex - 1); startAutoplay(); });
+  nextBtn?.addEventListener('click', () => { goToSlide(activeIndex + 1); startAutoplay(); });
 
   viewport?.addEventListener('mousemove', event => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || carouselDragging) return;
     const rect = viewport.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(track, {
-      rotateY: x * 8,
-      rotateX: y * -5,
-      x: x * 26,
-      duration: 0.7,
-      ease: 'power3.out',
-      overwrite: true
-    });
+    gsap.to(track, { rotateY: x * 8, rotateX: y * -5, x: x * 26, duration: 0.7, ease: 'power3.out', overwrite: true });
     cards.forEach((card, index) => {
       const offset = Math.abs(index - activeIndex);
       const media = card.querySelector('.carousel-card-media');
@@ -317,24 +343,13 @@ function initCarousel() {
       const depth = Math.max(0, 1 - Math.min(offset, 3) * 0.22);
       const mediaBaseX = Number(media.dataset.baseX || 0);
       const imageBaseX = Number(image.dataset.baseX || 0);
-      gsap.to(media, {
-        y: y * 22 * depth,
-        x: mediaBaseX + x * 10 * depth,
-        duration: 0.75,
-        ease: 'power3.out',
-        overwrite: true
-      });
-      gsap.to(image, {
-        xPercent: imageBaseX + x * 7 * depth,
-        yPercent: y * 8 * depth,
-        duration: 0.75,
-        ease: 'power3.out',
-        overwrite: true
-      });
+      gsap.to(media, { y: y * 22 * depth, x: mediaBaseX + x * 10 * depth, duration: 0.75, ease: 'power3.out', overwrite: true });
+      gsap.to(image, { xPercent: imageBaseX + x * 7 * depth, yPercent: y * 8 * depth, duration: 0.75, ease: 'power3.out', overwrite: true });
     });
   });
 
   viewport?.addEventListener('mouseleave', () => {
+    if (carouselDragging) return;
     gsap.to(track, { rotateY: 0, rotateX: 0, x: 0, duration: 0.8, ease: 'power3.out', overwrite: true });
     cards.forEach(card => {
       const media = card.querySelector('.carousel-card-media');
@@ -345,18 +360,44 @@ function initCarousel() {
     });
   });
 
-  viewport?.addEventListener('touchstart', event => {
-    startX = event.touches[0].clientX;
-  }, { passive: true });
+  viewport?.addEventListener('pointerdown', event => {
+    carouselDragging = true;
+    carouselDragStartX = event.clientX;
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport?.addEventListener('pointerup', event => onCarouselPointerEnd(event.clientX));
+  viewport?.addEventListener('pointercancel', () => { carouselDragging = false; });
+}
 
-  viewport?.addEventListener('touchend', event => {
-    endX = event.changedTouches[0].clientX;
-    const delta = endX - startX;
-    if (Math.abs(delta) > 40) {
-      goToSlide(delta < 0 ? activeIndex + 1 : activeIndex - 1);
-      startAutoplay();
-    }
-  }, { passive: true });
+function renderProofs(immediate = false) {
+  proofSlides.forEach((slide, index) => {
+    let offset = index - activeProof;
+    if (offset > proofData.length / 2) offset -= proofData.length;
+    if (offset < -proofData.length / 2) offset += proofData.length;
+    const abs = Math.abs(offset);
+    const direction = Math.sign(offset) || 1;
+    gsap.to(slide, {
+      xPercent: -50,
+      x: abs === 0 ? 0 : direction * (178 + (abs - 1) * 112),
+      z: -abs * 180,
+      rotateY: direction * -20,
+      scale: 1 - abs * 0.06,
+      opacity: abs > 3 ? 0 : Math.max(0.15, 1 - abs * 0.18),
+      duration: immediate || prefersReducedMotion ? 0 : 0.9,
+      ease: 'power3.inOut',
+      overwrite: true
+    });
+    slide.style.zIndex = String(100 - abs);
+  });
+  const item = proofData[activeProof];
+  proofCounter.textContent = `${String(activeProof + 1).padStart(2, '0')} / ${String(proofData.length).padStart(2, '0')}`;
+  proofTitle.textContent = item.title;
+  proofText.textContent = item.text;
+}
+
+function changeProof(direction) {
+  activeProof = (activeProof + direction + proofData.length) % proofData.length;
+  renderProofs();
 }
 
 function initProofs() {
@@ -379,35 +420,6 @@ function initProofs() {
   `).join('');
   proofSlides = [...proofTrack.querySelectorAll('.proof-slide')];
 
-  const renderProofs = (immediate = false) => {
-    proofSlides.forEach((slide, index) => {
-      let offset = index - activeProof;
-      if (offset > proofData.length / 2) offset -= proofData.length;
-      if (offset < -proofData.length / 2) offset += proofData.length;
-      const abs = Math.abs(offset);
-      const direction = Math.sign(offset) || 1;
-      const translateX = abs === 0 ? 0 : direction * (160 + (abs - 1) * 110);
-      const translateZ = -abs * 180;
-      const rotateY = direction * -20;
-      gsap.to(slide, {
-        xPercent: -50,
-        x: translateX,
-        z: translateZ,
-        rotateY,
-        scale: 1 - abs * 0.06,
-        opacity: abs > 3 ? 0 : Math.max(0.15, 1 - abs * 0.18),
-        duration: immediate || prefersReducedMotion ? 0 : 0.9,
-        ease: 'power3.inOut',
-        overwrite: true
-      });
-      slide.style.zIndex = String(100 - abs);
-    });
-    const item = proofData[activeProof];
-    proofCounter.textContent = `${String(activeProof + 1).padStart(2, '0')} / ${String(proofData.length).padStart(2, '0')}`;
-    proofTitle.textContent = item.title;
-    proofText.textContent = item.text;
-  };
-
   const openProofViewer = index => {
     activeProof = index;
     proofViewer.classList.add('is-open');
@@ -419,38 +431,70 @@ function initProofs() {
   const closeProofViewer = () => {
     proofViewer.classList.remove('is-open');
     proofViewer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    document.body.style.overflow = body.classList.contains('is-loading') ? 'hidden' : '';
   };
 
   proofsGrid.querySelectorAll('[data-proof-index]').forEach(btn => {
     btn.addEventListener('click', () => openProofViewer(Number(btn.dataset.proofIndex || 0)));
   });
-  proofPrev?.addEventListener('click', () => {
-    activeProof = (activeProof - 1 + proofData.length) % proofData.length;
-    renderProofs();
-  });
-  proofNext?.addEventListener('click', () => {
-    activeProof = (activeProof + 1) % proofData.length;
-    renderProofs();
-  });
+
+  proofPrev?.addEventListener('click', () => changeProof(-1));
+  proofNext?.addEventListener('click', () => changeProof(1));
   proofClose?.addEventListener('click', closeProofViewer);
   proofViewer?.addEventListener('click', event => {
     if (event.target === proofViewer) closeProofViewer();
   });
+  proofTrack?.addEventListener('pointerdown', event => {
+    proofDragging = true;
+    proofDragStartX = event.clientX;
+    proofTrack.setPointerCapture(event.pointerId);
+  });
+  proofTrack?.addEventListener('pointerup', event => {
+    if (!proofDragging) return;
+    const delta = event.clientX - proofDragStartX;
+    proofDragging = false;
+    if (Math.abs(delta) > 25) changeProof(delta < 0 ? 1 : -1);
+  });
+  proofTrack?.addEventListener('pointercancel', () => { proofDragging = false; });
+
   window.addEventListener('keydown', event => {
     if (!proofViewer?.classList.contains('is-open')) return;
     if (event.key === 'Escape') closeProofViewer();
-    if (event.key === 'ArrowLeft') {
-      activeProof = (activeProof - 1 + proofData.length) % proofData.length;
-      renderProofs();
-    }
-    if (event.key === 'ArrowRight') {
-      activeProof = (activeProof + 1) % proofData.length;
-      renderProofs();
-    }
+    if (event.key === 'ArrowLeft') changeProof(-1);
+    if (event.key === 'ArrowRight') changeProof(1);
   });
 
   renderProofs(true);
+}
+
+function setPhase(card, nextIndex, immediate = false) {
+  const images = [...card.querySelectorAll('[data-phase-image]')];
+  const tabs = [...card.querySelectorAll('.phase-tab')];
+  const range = card.querySelector('[data-phase-range]');
+  images.forEach((image, index) => {
+    image.classList.toggle('is-active', index === nextIndex);
+    gsap.to(image, {
+      opacity: index === nextIndex ? 1 : 0,
+      scale: index === nextIndex ? 1 : 1.03,
+      duration: immediate || prefersReducedMotion ? 0 : 0.55,
+      ease: 'power3.out',
+      overwrite: true
+    });
+  });
+  tabs.forEach((tab, index) => tab.classList.toggle('is-active', index === nextIndex));
+  if (range) range.value = String(nextIndex);
+}
+
+function initPhaseSliders() {
+  phaseCards.forEach(card => {
+    const tabs = [...card.querySelectorAll('.phase-tab')];
+    const range = card.querySelector('[data-phase-range]');
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => setPhase(card, index));
+    });
+    range?.addEventListener('input', () => setPhase(card, Number(range.value)));
+    setPhase(card, 0, true);
+  });
 }
 
 function initRevealObserver() {
@@ -473,18 +517,21 @@ function initRevealObserver() {
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', event => {
-    const target = document.querySelector(link.getAttribute('href'));
+    const selector = link.getAttribute('href');
+    if (!selector) return;
+    const target = document.querySelector(selector);
     if (!target) return;
     event.preventDefault();
     target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   });
 });
 
-window.addEventListener('load', () => {
-  document.body.classList.add('is-loaded');
+window.addEventListener('load', async () => {
   initHeroScene();
-  initHeroAnimations();
   initCarousel();
   initProofs();
+  initPhaseSliders();
   initRevealObserver();
+  await runLoader();
+  initHeroAnimations();
 });

@@ -11,6 +11,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="site-loader" id="site-loader" aria-hidden="true">
+    <div class="site-loader-panel">
+      <span class="site-loader-kicker">BM Bathrooms / immersive reveal loading</span>
+      <strong>Ładujemy realizację zanim pokażemy efekt końcowy.</strong>
+      <div class="site-loader-bar"><span id="site-loader-progress"></span></div>
+      <small id="site-loader-label">0%</small>
+    </div>
+  </div>
+
   <div class="page-noise" aria-hidden="true"></div>
 
   <header class="topbar">
@@ -25,8 +34,8 @@
       <nav>
         <a href="#oferta">Oferta</a>
         <a href="#realizacje">Realizacje</a>
-        <a href="#opinie">Opinie</a>
-        <a href="#proofs">Proofs</a>
+        <a href="#opinie">Dowody</a>
+        <a href="#transformacje">Metamorfozy</a>
         <a href="#team">Team</a>
         <a href="#kontakt" class="btn btn-small">Darmowa konsultacja</a>
       </nav>
@@ -126,28 +135,12 @@
       </div>
     </section>
 
-    <section id="opinie" class="section section-dark trust-section">
+    <section id="opinie" class="section section-dark proofs-section">
       <div class="container">
-        <p class="eyebrow">Opinie i referencje</p>
-        <h2>Klienci potwierdzają jakość wykonania</h2>
-        <div class="grid three testimonials-grid">
-          <article class="quote-card reveal-up">
-            <p>“Hi Vasyl, I’m well thank you. Congratulations in your business. You deserve it. Happy to help with the reference.”</p>
-            <div class="quote-meta"><strong>Aaron</strong><span>referencja klienta</span></div>
-          </article>
-          <article class="quote-card reveal-up">
-            <p>“Yeah no problem. Happy to help.”</p>
-            <div class="quote-meta"><strong>Ketan Patel</strong><span>potwierdzenie jakości wykonania</span></div>
-          </article>
-          <article class="quote-card reveal-up">
-            <p>“Hello yes I am happy to give a reference should a company approach me. Good luck in your new business.”</p>
-            <div class="quote-meta"><strong>Robin</strong><span>referencja po realizacji łazienki</span></div>
-          </article>
-        </div>
-        <div class="reference-note reveal-up">
-          <strong>Dodatkowe referencje dostępne na prośbę.</strong>
-          <p>Klienci Sean, Robin, Aaron i Ketan potwierdzili możliwość udzielenia referencji dotyczących jakości wykonania, terminowości i ogólnego poziomu współpracy.</p>
-        </div>
+        <p class="eyebrow">Proofs / dokumenty / wiadomości</p>
+        <h2>Pełny podgląd screenów, dokumentów i wiadomości</h2>
+        <p class="section-lead">Zamiast martwej sekcji z cytatami wrzucam tu realne dowody. Klikasz dowolny screen, otwierasz viewer 3D, przewijasz strzałkami albo przeciągnięciem.</p>
+        <div class="proofs-grid" id="proofs-grid"></div>
       </div>
     </section>
 
@@ -218,12 +211,72 @@
       </div>
     </section>
 
-    <section id="proofs" class="section section-dark proofs-section">
+    <section id="transformacje" class="section transformations-section">
       <div class="container">
-        <p class="eyebrow">Proofs / dokumenty / referencje</p>
-        <h2>Pełny podgląd screenów, dokumentów i wiadomości</h2>
-        <p class="section-lead">Tutaj są realne screeny certyfikatów, ubezpieczenia oraz referencji od klientów. Klikasz i przeglądasz całość w osobnym viewerze z efektem 3D slider animation.</p>
-        <div class="proofs-grid" id="proofs-grid"></div>
+        <p class="eyebrow">Before / during / after</p>
+        <h2>Od stanu surowego do gotowej łazienki</h2>
+        <p class="section-lead">Każda karta ma 3 etapy. Przesuwasz suwak i widzisz, jak projekt przechodzi od przygotowania, przez montaż, do gotowego efektu premium.</p>
+        <div class="transformations-grid" id="transformations-grid">
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head">
+              <span>Case 01</span>
+              <strong>Strefa prysznica i wnęka</strong>
+            </div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-01-before.jpg" alt="Łazienka przed remontem" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-01-during.jpg" alt="Łazienka w trakcie remontu" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-01-after.jpg" alt="Łazienka po remoncie" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs">
+                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
+                <button class="phase-tab" data-phase-target="1">W trakcie</button>
+                <button class="phase-tab" data-phase-target="2">Po</button>
+              </div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
+            </div>
+          </article>
+
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head">
+              <span>Case 02</span>
+              <strong>Zabudowa, podłoga, wejście w wykończenie</strong>
+            </div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-02-before.jpg" alt="Przed remontem, stan surowy" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-02-during.jpg" alt="W trakcie układania i zabudowy" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-02-after.jpg" alt="Po remoncie, gotowa łazienka" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs">
+                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
+                <button class="phase-tab" data-phase-target="1">W trakcie</button>
+                <button class="phase-tab" data-phase-target="2">Po</button>
+              </div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
+            </div>
+          </article>
+
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head">
+              <span>Case 03</span>
+              <strong>Góra zabudowy i finalny detal strefy umywalki</strong>
+            </div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-03-before.jpg" alt="Przed wykończeniem" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-03-during.jpg" alt="W trakcie dopinania prac" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-03-after.jpg" alt="Po wykończeniu" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs">
+                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
+                <button class="phase-tab" data-phase-target="1">W trakcie</button>
+                <button class="phase-tab" data-phase-target="2">Po</button>
+              </div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -250,8 +303,8 @@
       </div>
       <div class="footer-links">
         <a href="#realizacje">Realizacje</a>
-        <a href="#opinie">Opinie</a>
-        <a href="#proofs">Proofs</a>
+        <a href="#opinie">Dowody</a>
+        <a href="#transformacje">Metamorfozy</a>
         <a href="#team">Team</a>
         <a href="#kontakt">Kontakt</a>
       </div>
