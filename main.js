@@ -79,7 +79,7 @@ function runLoader() {
     const state = { value: 0 };
     gsap.to(state, {
       value: 100,
-      duration: 1.7,
+      duration: 0.85,
       ease: 'power2.inOut',
       onUpdate: () => {
         const val = Math.round(state.value);
@@ -89,7 +89,7 @@ function runLoader() {
       onComplete: () => {
         gsap.to(siteLoader, {
           opacity: 0,
-          duration: 0.45,
+          duration: 0.22,
           ease: 'power2.out',
           onComplete: () => {
             siteLoader.classList.add('is-hidden');

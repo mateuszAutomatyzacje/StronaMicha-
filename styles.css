@@ -26,6 +26,18 @@ body {
 body.is-loading {
   overflow: hidden;
 }
+body.is-loading .topbar,
+body.is-loading main,
+body.is-loading footer {
+  opacity: 0;
+  pointer-events: none;
+}
+body.is-loaded .topbar,
+body.is-loaded main,
+body.is-loaded footer {
+  opacity: 1;
+  pointer-events: auto;
+}
 body.is-loaded .reveal-on-load,
 body.is-loaded .reveal-up,
 body.is-loaded .hero-stage { opacity: 1; transform: none; }
@@ -45,6 +57,11 @@ img { max-width: 100%; display: block; }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+.topbar,
+main,
+footer {
+  transition: opacity .28s ease;
 }
 .site-loader-panel {
   width: min(640px, calc(100% - 32px));
