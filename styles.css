@@ -439,21 +439,35 @@ h1 {
   display: grid;
   gap: 22px;
 }
+.grid.two { grid-template-columns: repeat(2, 1fr); }
 .grid.three { grid-template-columns: repeat(3, 1fr); }
-.tile, .cta-box {
+.tile, .cta-box, .quote-card, .reference-note, .team-card, .credential-card {
   background: rgba(255,255,255,0.84);
   border: 1px solid rgba(21, 23, 29, 0.08);
   border-radius: var(--radius);
   box-shadow: 0 24px 60px rgba(18, 25, 38, 0.08);
   backdrop-filter: blur(16px);
 }
-.tile {
+.tile,
+.quote-card,
+.reference-note,
+.team-card,
+.credential-card {
   padding: 28px;
   transition: transform .3s ease, box-shadow .3s ease;
 }
-.tile:hover { transform: translateY(-4px); box-shadow: 0 28px 68px rgba(18,25,38,.12); }
-.tile h3 { margin-bottom: 12px; }
-.tile p { color: var(--muted-dark); line-height: 1.75; margin-bottom: 0; }
+.tile:hover,
+.quote-card:hover,
+.reference-note:hover,
+.team-card:hover,
+.credential-card:hover { transform: translateY(-4px); box-shadow: 0 28px 68px rgba(18,25,38,.12); }
+.tile h3,
+.team-card h3,
+.credential-card h3 { margin-bottom: 12px; }
+.tile p,
+.team-card p,
+.credential-card p,
+.reference-note p { color: var(--muted-dark); line-height: 1.75; margin-bottom: 0; }
 .steps strong {
   width: 44px;
   height: 44px;
@@ -463,6 +477,53 @@ h1 {
   margin-bottom: 16px;
   background: linear-gradient(135deg, rgba(217,178,102,.18), rgba(217,178,102,.06));
   color: #7c5a18;
+}
+.section-team {
+  background: linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,.06));
+}
+.quote-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.quote-card p,
+.reference-note p { color: rgba(238,241,246,.78); }
+.quote-meta {
+  margin-top: 18px;
+  display: grid;
+  gap: 4px;
+}
+.quote-meta span,
+.team-role,
+.credential-kicker {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(217,178,102,.86);
+  font-weight: 700;
+}
+.quote-meta strong { font-size: 1rem; }
+.reference-note {
+  margin-top: 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.reference-note strong {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+}
+.team-card,
+.credential-card {
+  background: rgba(255,255,255,0.84);
+}
+.team-grid,
+.credentials-grid,
+.testimonials-grid { align-items: stretch; }
+.credential-card ul {
+  margin: 18px 0 0;
+  padding-left: 18px;
+  color: var(--muted-dark);
+  line-height: 1.9;
 }
 .cta-box {
   padding: 38px;
@@ -494,6 +555,7 @@ h1 {
 @media (max-width: 1100px) {
   .hero-shell,
   .slider-head,
+  .grid.two,
   .grid.three,
   .cta-box {
     grid-template-columns: 1fr;
