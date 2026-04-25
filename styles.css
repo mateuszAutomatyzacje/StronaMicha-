@@ -199,27 +199,48 @@ h1 {
   background-position: center;
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,0.12);
-  transform: translate3d(0, 48px, -180px) rotateX(10deg) scale(.92);
+  transform: translate3d(0, 0, -120px) scale(1.035);
   opacity: 0;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  transition: transform 1s cubic-bezier(.19,1,.22,1), opacity .8s ease, clip-path 1.2s cubic-bezier(.19,1,.22,1);
+  filter: blur(14px) saturate(.92);
+  clip-path: inset(0 0 0 100% round 36px);
+  transition:
+    transform 1.35s cubic-bezier(.19,1,.22,1),
+    opacity 1.05s ease,
+    clip-path 1.35s cubic-bezier(.19,1,.22,1),
+    filter 1.1s ease;
+  will-change: transform, clip-path, opacity, filter;
 }
 .reveal-panel::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 12%, rgba(255,255,255,.26) 50%, transparent 88%);
-  transform: translateX(-130%);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,0) 18%),
+    linear-gradient(112deg, transparent 22%, rgba(255,255,255,.3) 48%, transparent 74%);
+  transform: translateX(-120%);
+  mix-blend-mode: screen;
+}
+.reveal-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 72% 18%, rgba(255,255,255,.18), transparent 28%);
+  opacity: 0;
+  transition: opacity .8s ease;
 }
 .reveal-panel.is-active {
   opacity: 1;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  filter: blur(0) saturate(1.02);
+  clip-path: inset(0 0 0 0 round 36px);
+  transform: translate3d(0, 0, 0) scale(1);
 }
-.reveal-panel.is-active::before { animation: sheen 1.2s ease .1s both; }
+.reveal-panel.is-active::before { animation: immersiveSweep 1.35s cubic-bezier(.19,1,.22,1) .08s both; }
+.reveal-panel.is-active::after { opacity: 1; }
 .reveal-panel.is-exit {
-  opacity: .54;
-  transform: translate3d(-8%, 12px, -120px) rotateY(-10deg) scale(.96);
+  opacity: .28;
+  filter: blur(10px) saturate(.9);
+  clip-path: inset(0 100% 0 0 round 36px);
+  transform: translate3d(0, 0, -70px) scale(.985);
 }
 .reveal-info {
   position: absolute;
@@ -230,7 +251,7 @@ h1 {
   gap: 8px;
   padding: 18px 20px;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(13,17,24,0.14), rgba(13,17,24,0.72));
+  background: linear-gradient(180deg, rgba(13,17,24,0.1), rgba(13,17,24,0.68));
   backdrop-filter: blur(12px);
 }
 .reveal-info span {
@@ -249,7 +270,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 .hero-stage-chip {
   padding: 10px 14px;
@@ -263,19 +284,37 @@ h1 {
   letter-spacing: .12em;
 }
 .hero-stage-progress {
+  position: relative;
   flex: 1;
-  max-width: 180px;
-  height: 4px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.12);
+  max-width: 420px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+.hero-stage-progress::before,
+.hero-stage-progress::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+.hero-stage-progress::before {
+  background: linear-gradient(90deg, rgba(255,255,255,.42), rgba(255,255,255,.15) 35%, rgba(217,178,102,.28) 70%, rgba(255,255,255,.42));
+}
+.hero-stage-progress::after {
+  content: none;
 }
 .hero-stage-progress span {
+  position: relative;
   display: block;
-  width: 33.333%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
-  transition: transform .8s ease;
+  width: 140px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(247,225,169,.98), rgba(217,178,102,.72));
+  box-shadow: 0 0 18px rgba(217,178,102,.35);
+  transition: transform 1.1s cubic-bezier(.19,1,.22,1);
 }
 
 .section {
@@ -333,8 +372,9 @@ h1 {
   background: #151922;
   border: 1px solid rgba(255,255,255,0.1);
   transform-origin: center center;
-  transition: transform .8s cubic-bezier(.19,1,.22,1), opacity .8s ease, filter .8s ease;
+  transition: transform 1s cubic-bezier(.19,1,.22,1), opacity .95s ease, filter .95s ease;
   will-change: transform;
+  backface-visibility: hidden;
 }
 .carousel-card img {
   width: 100%;
@@ -433,9 +473,10 @@ h1 {
   flex-wrap: wrap;
 }
 
-@keyframes sheen {
-  from { transform: translateX(-130%); }
-  to { transform: translateX(130%); }
+@keyframes immersiveSweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: .55; }
 }
 
 @media (max-width: 1100px) {

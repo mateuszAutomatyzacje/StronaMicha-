@@ -19,12 +19,17 @@ function setHeroSlide(nextIndex) {
     if (index === nextIndex) panel.classList.add('is-active');
     if (index === activeHero && index !== nextIndex) panel.classList.add('is-exit');
   });
-  heroProgress.style.transform = `translateX(${nextIndex * 100}%)`;
+  if (heroProgress) {
+    const maxTravel = 420 - 140;
+    const step = maxTravel / Math.max(heroPanels.length - 1, 1);
+    heroProgress.style.transform = `translateX(${nextIndex * step}px)`;
+  }
   activeHero = nextIndex;
 }
 
 if (heroPanels.length) {
-  setInterval(() => setHeroSlide((activeHero + 1) % heroPanels.length), 3200);
+  setHeroSlide(0);
+  setInterval(() => setHeroSlide((activeHero + 1) % heroPanels.length), 3800);
 }
 
 const track = document.getElementById('carousel-track');
@@ -57,15 +62,21 @@ function renderCarousel() {
   if (!cards.length) return;
 
   cards.forEach((card, index) => {
-    const offset = index - activeIndex;
+    let offset = index - activeIndex;
+    if (offset > imageData.length / 2) offset -= imageData.length;
+    if (offset < -imageData.length / 2) offset += imageData.length;
     const abs = Math.abs(offset);
     const clamped = Math.min(abs, 4);
-    const translateX = offset * 190;
-    const translateZ = -abs * 160;
-    const rotateY = offset * -18;
+    const direction = Math.sign(offset) || 1;
+    const baseX = abs === 0 ? 0 : 120 + (abs - 1) * 108;
+    const translateX = direction * baseX;
+    const translateZ = -abs * 150;
+    const rotateY = direction * -22;
     const scale = 1 - abs * 0.08;
-    card.style.opacity = abs > 4 ? '0' : String(1 - abs * 0.14);
-    card.style.filter = abs === 0 ? 'none' : `blur(${clamped * 0.8}px) saturate(${1 - abs * 0.08})`;
+    const opacity = abs > 4 ? 0 : Math.max(0.16, 1 - abs * 0.17);
+    const blur = abs === 0 ? 0 : clamped * 1.35;
+    card.style.opacity = String(opacity);
+    card.style.filter = abs === 0 ? 'none' : `blur(${blur}px) saturate(${1 - abs * 0.06}) brightness(${1 - abs * 0.06})`;
     card.style.transform = `translateX(calc(-50% + ${translateX}px)) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
     card.style.zIndex = String(100 - abs);
   });
@@ -83,7 +94,7 @@ function goToSlide(index) {
 
 function startAutoplay() {
   clearInterval(autoplay);
-  autoplay = setInterval(() => goToSlide(activeIndex + 1), 2800);
+  autoplay = setInterval(() => goToSlide(activeIndex + 1), 3400);
 }
 
 createCards();
