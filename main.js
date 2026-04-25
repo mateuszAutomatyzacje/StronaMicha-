@@ -1,12 +1,12 @@
 const imageData = [
   { src: 'assets/img18.jpg', title: 'Salonowa łazienka premium', text: 'Szeroki kadr z wanną wolnostojącą, światłem liniowym i pełnym efektem wow od pierwszego wejścia.' },
   { src: 'assets/img22.jpg', title: 'Miedź i kamień', text: 'Ciepłe akcenty metalu i głęboka faktura ściany świetnie pracują w animacji 3D.' },
-  { src: 'assets/img24.jpg', title: 'Prysznic i wanna w jednej osi', text: 'Kadr, który pokazuje ergonomię układu oraz poziom wykończenia w jednym ujęciu.' },
   { src: 'assets/img20.jpg', title: 'Kontrastowy motyw', text: 'Mocny wzór płytek przełamuje minimalistyczne realizacje i dodaje galerii charakteru.' },
   { src: 'assets/img19.jpg', title: 'Zabudowa i światło LED', text: 'Dobry przykład tego, jak detal meblowy i pionowe światło robią klimat premium.' },
   { src: 'assets/img21.jpg', title: 'Strefa prysznica', text: 'Bliski kadr na armaturę i szkło buduje zaufanie do jakości wykonania.' },
   { src: 'assets/img17.jpg', title: 'Dopracowane wykończenie', text: 'Zbliżenie na gotowy efekt, który dobrze działa jako element wiarygodności i portfolio.' },
-  { src: 'assets/img23.jpg', title: 'Przed i po', text: 'Ujęcie etapu prac przypomina, że za efektem finalnym stoi realna robota i proces wykonawczy.' }
+  { src: 'assets/img16.jpg', title: 'Stonowany minimalizm', text: 'Jaśniejsza realizacja równoważy ciemniejsze kadry i poprawia rytm całej sekcji.' },
+  { src: 'assets/img14.jpg', title: 'Głębia materiałów', text: 'Kadr oparty na fakturze, świetle i warstwach, żeby galeria nie wpadała w powtarzalność.' }
 ];
 
 const heroPanels = [...document.querySelectorAll('.reveal-panel')];
