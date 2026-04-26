@@ -1,0 +1,11 @@
+.git
+node_modules
+preview-*.png
+playwright-*.png
+contact-sheet.jpg
+docs
+package.json
+package-lock.json
+wrangler.toml
+.assetsignore
+.gitignore

@@ -1,5 +1,5 @@
-import * as THREE from './node_modules/three/build/three.module.js';
-import { gsap } from './node_modules/gsap/index.js';
+import * as THREE from './assets/vendor/three/three.module.js';
+import { gsap } from './assets/vendor/gsap/index.js';
 
 const imageData = [
   { src: 'assets/img18.jpg', title: 'Premium bathroom finish', text: 'A complete bathroom view showing the final standard: light, surfaces, fittings and a calm premium finish.' },
