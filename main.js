@@ -2,30 +2,22 @@ import * as THREE from './node_modules/three/build/three.module.js';
 import { gsap } from './node_modules/gsap/index.js';
 
 const imageData = [
-  { src: 'assets/img18.jpg', title: 'Salonowa łazienka premium', text: 'Szeroki kadr z wanną wolnostojącą, światłem liniowym i pełnym efektem wow od pierwszego wejścia.' },
-  { src: 'assets/img22.jpg', title: 'Miedź i kamień', text: 'Ciepłe akcenty metalu i głęboka faktura ściany świetnie pracują w animacji 3D.' },
-  { src: 'assets/img20.jpg', title: 'Kontrastowy motyw', text: 'Mocny wzór płytek przełamuje minimalistyczne realizacje i dodaje galerii charakteru.' },
-  { src: 'assets/img19.jpg', title: 'Zabudowa i światło LED', text: 'Dobry przykład tego, jak detal meblowy i pionowe światło robią klimat premium.' },
-  { src: 'assets/img21.jpg', title: 'Strefa prysznica', text: 'Bliski kadr na armaturę i szkło buduje zaufanie do jakości wykonania.' },
-  { src: 'assets/img17.jpg', title: 'Dopracowane wykończenie', text: 'Zbliżenie na gotowy efekt, który dobrze działa jako element wiarygodności i portfolio.' },
-  { src: 'assets/img16.jpg', title: 'Stonowany minimalizm', text: 'Jaśniejsza realizacja równoważy ciemniejsze kadry i poprawia rytm całej sekcji.' },
-  { src: 'assets/img14.jpg', title: 'Głębia materiałów', text: 'Kadr oparty na fakturze, świetle i warstwach, żeby galeria nie wpadała w powtarzalność.' }
+  { src: 'assets/img18.jpg', title: 'Premium bathroom finish', text: 'A complete bathroom view showing the final standard: light, surfaces, fittings and a calm premium finish.' },
+  { src: 'assets/img22.jpg', title: 'Stone and warm metal', text: 'Warm metal accents and deep stone texture help the work feel considered, modern and high-end.' },
+  { src: 'assets/img20.jpg', title: 'Pattern and contrast', text: 'A stronger tile pattern adds character while keeping the installation clean and controlled.' },
+  { src: 'assets/img19.jpg', title: 'Joinery and LED detail', text: 'Vertical light, clean planes and fitted details show the quality clients notice every day.' },
+  { src: 'assets/img21.jpg', title: 'Shower zone', text: 'Close detail on fittings, glass and finish builds confidence in the installation quality.' },
+  { src: 'assets/img17.jpg', title: 'Finish line detail', text: 'Corners, grout lines and surface transitions show the standard better than generic sales copy.' },
+  { src: 'assets/img16.jpg', title: 'Soft minimal finish', text: 'A lighter project balances the dark showcase and shows the process works across styles.' },
+  { src: 'assets/img14.jpg', title: 'Material depth', text: 'Texture, light and layered materials create a premium impression without shouting.' }
 ];
 
 const proofData = [
-  { src: 'assets/proofs/proof01.jpg', title: 'Proof 01', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof02.jpg', title: 'Proof 02', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof03.jpg', title: 'Proof 03', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof04.jpg', title: 'Proof 04', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof05.jpg', title: 'Proof 05', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof07.jpg', title: 'Proof 06', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof08.jpg', title: 'Proof 07', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof10.jpg', title: 'Proof 08', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof13.jpg', title: 'Proof 09', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof14.jpg', title: 'Proof 10', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof15.jpg', title: 'Proof 11', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof16.jpg', title: 'Proof 12', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' },
-  { src: 'assets/proofs/proof24.jpg', title: 'Proof 13', text: 'Realny screen dokumentu lub wiadomości referencyjnej.' }
+  { src: 'assets/proofs/svg/reference-01.svg', title: 'Reference 01', text: 'Original client reference screen.' },
+  { src: 'assets/proofs/svg/reference-02.svg', title: 'Reference 02', text: 'Original client reference screen.' },
+  { src: 'assets/proofs/svg/reference-03.svg', title: 'Reference 03', text: 'Original client reference screen.' },
+  { src: 'assets/proofs/svg/reference-04.svg', title: 'Reference 04', text: 'Original client reference screen.' },
+  { src: 'assets/proofs/svg/reference-05.svg', title: 'Reference 05', text: 'Original client reference screen.' }
 ];
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -33,6 +25,11 @@ const body = document.body;
 const siteLoader = document.getElementById('site-loader');
 const siteLoaderProgress = document.getElementById('site-loader-progress');
 const siteLoaderLabel = document.getElementById('site-loader-label');
+const introReveal = document.getElementById('intro-reveal');
+const introPanels = [...document.querySelectorAll('.intro-panel')];
+const introTitle = document.getElementById('intro-title');
+const introText = document.getElementById('intro-text');
+const introProgressBar = document.getElementById('intro-progress-bar');
 const heroPanels = [...document.querySelectorAll('.reveal-panel')];
 const heroProgress = document.getElementById('hero-progress');
 const track = document.getElementById('carousel-track');
@@ -61,6 +58,7 @@ let cards = [];
 let proofSlides = [];
 let activeProof = 0;
 let carouselDragStartX = 0;
+let carouselDragLastX = 0;
 let carouselDragging = false;
 let carouselPointerId = null;
 let proofDragStartX = 0;
@@ -79,8 +77,8 @@ function runLoader() {
     const state = { value: 0 };
     gsap.to(state, {
       value: 100,
-      duration: 0.85,
-      ease: 'power2.inOut',
+      duration: 1.35,
+      ease: 'power3.inOut',
       onUpdate: () => {
         const val = Math.round(state.value);
         siteLoaderProgress.style.width = `${val}%`;
@@ -89,8 +87,8 @@ function runLoader() {
       onComplete: () => {
         gsap.to(siteLoader, {
           opacity: 0,
-          duration: 0.22,
-          ease: 'power2.out',
+          duration: 0.42,
+          ease: 'power3.out',
           onComplete: () => {
             siteLoader.classList.add('is-hidden');
             body.classList.remove('is-loading');
@@ -210,21 +208,68 @@ function startHeroAutoplay() {
   }, 4200);
 }
 
-function initHeroAnimations() {
-  setHeroSlide(0, true);
-  if (!prefersReducedMotion) {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.topbar', { y: -18, opacity: 0, duration: 0.65 })
-      .from('.hero-copy .eyebrow', { y: 22, opacity: 0, duration: 0.6 }, '-=0.2')
-      .from('.hero-copy h1', { y: 34, opacity: 0, duration: 0.85 }, '-=0.38')
-      .from('.hero-copy .lead', { y: 20, opacity: 0, duration: 0.75 }, '-=0.55')
-      .from('.hero-actions a', { y: 18, opacity: 0, stagger: 0.08, duration: 0.55 }, '-=0.48')
-      .from('.trust-list li', { y: 12, opacity: 0, stagger: 0.07, duration: 0.45 }, '-=0.36')
-      .from('.hero-stage', { opacity: 0, scale: 0.98, duration: 0.8 }, '-=0.75')
-      .from('.hero-stage-chip', { opacity: 0, x: -24, duration: 0.6 }, '-=0.5')
-      .from('.hero-stage-progress', { opacity: 0, x: 24, duration: 0.6 }, '<');
+function finishIntroReveal() {
+  if (introReveal) {
+    introReveal.classList.remove('is-running');
+    introReveal.classList.add('is-hidden');
+    introReveal.setAttribute('aria-hidden', 'true');
   }
+  body.classList.remove('is-intro-revealing');
+  gsap.set(['.topbar', '.hero-copy', '.hero-copy *', '.hero-stage'], { clearProps: 'opacity,transform' });
+  setHeroSlide(2, true);
   startHeroAutoplay();
+}
+
+function setIntroStage(index) {
+  const stages = [
+    { title: 'Before', text: 'We start with the real condition of the room.' },
+    { title: 'Craft', text: 'Waterproofing, tiling, fitting and detail control.' },
+    { title: 'Finish', text: 'A clean handover with a premium bathroom finish.' }
+  ];
+  introPanels.forEach((panel, panelIndex) => {
+    panel.classList.toggle('is-active', panelIndex === index);
+    panel.classList.toggle('is-past', panelIndex < index);
+  });
+  if (introTitle) introTitle.textContent = stages[index]?.title || stages[0].title;
+  if (introText) introText.textContent = stages[index]?.text || stages[0].text;
+  if (introProgressBar) {
+    gsap.to(introProgressBar, { width: `${((index + 1) / stages.length) * 100}%`, duration: 0.42, ease: 'power3.out', overwrite: true });
+  }
+}
+
+function initHeroAnimations() {
+  clearInterval(heroInterval);
+  setHeroSlide(2, true);
+  gsap.set(['.topbar', '.hero-copy', '.hero-copy *', '.hero-stage'], { clearProps: 'opacity,transform' });
+
+  if (prefersReducedMotion || !introReveal || introPanels.length < 3) {
+    finishIntroReveal();
+    return;
+  }
+
+  body.classList.add('is-intro-revealing');
+  introReveal.classList.remove('is-hidden');
+  introReveal.classList.add('is-running');
+  introReveal.setAttribute('aria-hidden', 'false');
+  gsap.set(introPanels, { clearProps: 'opacity,transform,clipPath' });
+  gsap.set(introProgressBar, { width: '0%' });
+  setIntroStage(0);
+
+  const revealTimers = [
+    window.setTimeout(() => setIntroStage(1), 950),
+    window.setTimeout(() => setIntroStage(2), 1850),
+    window.setTimeout(() => {
+      gsap.to(introReveal, { opacity: 0, scale: 1.015, duration: 0.62, ease: 'power3.inOut', overwrite: true, onComplete: () => {
+        gsap.set(introReveal, { clearProps: 'opacity,transform' });
+        finishIntroReveal();
+      }});
+    }, 2850)
+  ];
+
+  window.setTimeout(() => {
+    revealTimers.forEach(timer => window.clearTimeout(timer));
+    finishIntroReveal();
+  }, 4700);
 }
 
 function createCards() {
@@ -232,74 +277,75 @@ function createCards() {
   track.innerHTML = imageData.map((item, index) => `
     <article class="carousel-card" data-index="${index}">
       <div class="carousel-card-media">
-        <img src="${item.src}" alt="Realizacja łazienki ${index + 1}">
+        <img src="${item.src}" alt="Bathroom project ${index + 1}">
       </div>
       <div class="carousel-card-label">
-        <span>Realizacja ${String(index + 1).padStart(2, '0')}</span>
+        <span>Project ${String(index + 1).padStart(2, '0')}</span>
         <strong>${item.title}</strong>
       </div>
     </article>
   `).join('');
   cards = [...track.querySelectorAll('.carousel-card')];
+  const controls = document.querySelector('.carousel-controls');
+  if (controls && !document.querySelector('.carousel-dots')) {
+    controls.insertAdjacentHTML('afterend', `<div class="carousel-dots" aria-label="Project image selection">${imageData.map((_, index) => `<button class="carousel-dot" data-slide="${index}" aria-label="Show project image ${index + 1}"></button>`).join('')}</div>`);
+  }
 }
 
-function renderCarousel(immediate = false) {
-  if (!cards.length) return;
-
-  cards.forEach((card, index) => {
-    let offset = index - activeIndex;
-    if (offset > imageData.length / 2) offset -= imageData.length;
-    if (offset < -imageData.length / 2) offset += imageData.length;
-
-    const abs = Math.abs(offset);
-    const direction = Math.sign(offset) || 1;
-    const baseX = abs === 0 ? 0 : 120 + (abs - 1) * 108;
-    const translateX = direction * baseX;
-    const translateZ = -abs * 150;
-    const rotateY = direction * -22;
-
-    gsap.to(card, {
-      xPercent: -50,
-      x: translateX,
-      z: translateZ,
-      rotateY,
-      scale: 1 - abs * 0.08,
-      opacity: abs > 4 ? 0 : Math.max(0.16, 1 - abs * 0.17),
-      duration: immediate || prefersReducedMotion ? 0 : 1,
-      ease: 'power3.inOut',
-      overwrite: true
-    });
-    gsap.to(card, {
-      filter: abs === 0 ? 'blur(0px) saturate(1) brightness(1)' : `blur(${Math.min(abs, 4) * 1.35}px) saturate(${1 - abs * 0.06}) brightness(${1 - abs * 0.06})`,
-      duration: immediate || prefersReducedMotion ? 0 : 1,
-      ease: 'power3.inOut',
-      overwrite: true
-    });
-
-    const media = card.querySelector('.carousel-card-media');
-    const image = card.querySelector('img');
-    if (media && image) {
-      const mediaBaseX = direction * abs * -14;
-      const imageBaseX = direction * abs * 2.6;
-      media.dataset.baseX = String(mediaBaseX);
-      image.dataset.baseX = String(imageBaseX);
-      gsap.to(media, { x: mediaBaseX, duration: immediate || prefersReducedMotion ? 0 : 1.1, ease: 'power3.inOut', overwrite: true });
-      gsap.to(image, {
-        scale: abs === 0 ? 1.08 : 1.16 + abs * 0.015,
-        xPercent: imageBaseX,
-        duration: immediate || prefersReducedMotion ? 0 : 1.1,
-        ease: 'power3.inOut',
-        overwrite: true
-      });
-    }
-    card.style.zIndex = String(100 - abs);
-    card.classList.toggle('is-active', abs === 0);
-  });
-
+function updateCarouselCaption() {
   const item = imageData[activeIndex];
+  if (!item) return;
   counter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(imageData.length).padStart(2, '0')}`;
   title.textContent = item.title;
   text.textContent = item.text;
+}
+
+function renderCarousel(immediate = false) {
+  if (!cards.length || !track || !viewport) return;
+
+  const viewportWidth = viewport.clientWidth;
+  const cardWidth = cards[0].offsetWidth;
+  const gap = parseFloat(getComputedStyle(track).gap || '24') || 24;
+  const edgePadding = Math.max((viewportWidth - cardWidth) / 2, 0);
+  track.style.paddingLeft = `${edgePadding}px`;
+  track.style.paddingRight = `${edgePadding}px`;
+  const targetX = activeIndex * (cardWidth + gap);
+
+  gsap.to(track, {
+    x: -targetX,
+    duration: immediate || prefersReducedMotion ? 0 : 0.68,
+    ease: 'power3.out',
+    overwrite: true
+  });
+
+  cards.forEach((card, index) => {
+    const offset = index - activeIndex;
+    const abs = Math.abs(offset);
+    const side = Math.sign(offset) || 0;
+    card.classList.toggle('is-active', index === activeIndex);
+    card.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+    card.style.zIndex = String(40 - abs);
+
+    gsap.to(card, {
+      rotateY: side * -10,
+      rotateZ: side * 0.8,
+      y: abs === 0 ? 0 : 18 + Math.min(abs, 3) * 6,
+      z: abs === 0 ? 80 : -Math.min(abs, 4) * 42,
+      scale: abs === 0 ? 1.03 : 0.94 - Math.min(abs, 3) * 0.025,
+      opacity: abs > 4 ? 0.34 : Math.max(0.58, 1 - abs * 0.13),
+      filter: abs === 0 ? 'saturate(1.08) brightness(1.04)' : `saturate(${Math.max(0.76, 1 - abs * 0.08)}) brightness(${Math.max(0.74, 0.94 - abs * 0.05)})`,
+      duration: immediate || prefersReducedMotion ? 0 : 0.68,
+      ease: 'power3.out',
+      overwrite: true
+    });
+  });
+
+  document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('is-active', index === activeIndex);
+    dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+  });
+
+  updateCarouselCaption();
 }
 
 function goToSlide(index) {
@@ -309,6 +355,14 @@ function goToSlide(index) {
 
 function startAutoplay() {
   clearInterval(autoplay);
+  if (prefersReducedMotion || imageData.length <= 1) return;
+  autoplay = window.setInterval(() => {
+    goToSlide(activeIndex + 1);
+  }, 4200);
+}
+
+function pauseAutoplay() {
+  clearInterval(autoplay);
 }
 
 function onCarouselPointerEnd(clientX) {
@@ -316,10 +370,13 @@ function onCarouselPointerEnd(clientX) {
   const delta = clientX - carouselDragStartX;
   carouselDragging = false;
   carouselPointerId = null;
-  if (Math.abs(delta) > 30) {
+  viewport?.classList.remove('is-dragging');
+  if (Math.abs(delta) > 34) {
     goToSlide(delta < 0 ? activeIndex + 1 : activeIndex - 1);
-    startAutoplay();
+  } else {
+    renderCarousel();
   }
+  startAutoplay();
 }
 
 function initCarousel() {
@@ -329,70 +386,60 @@ function initCarousel() {
 
   prevBtn?.addEventListener('click', event => {
     event.preventDefault();
-    event.stopPropagation();
+    pauseAutoplay();
     goToSlide(activeIndex - 1);
     startAutoplay();
   });
   nextBtn?.addEventListener('click', event => {
     event.preventDefault();
-    event.stopPropagation();
+    pauseAutoplay();
     goToSlide(activeIndex + 1);
     startAutoplay();
-  });
-
-  viewport?.addEventListener('mousemove', event => {
-    if (prefersReducedMotion || carouselDragging) return;
-    const rect = viewport.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(track, { rotateY: x * 8, rotateX: y * -5, x: x * 26, duration: 0.7, ease: 'power3.out', overwrite: true });
-    cards.forEach((card, index) => {
-      const offset = Math.abs(index - activeIndex);
-      const media = card.querySelector('.carousel-card-media');
-      const image = card.querySelector('img');
-      if (!media || !image) return;
-      const depth = Math.max(0, 1 - Math.min(offset, 3) * 0.22);
-      const mediaBaseX = Number(media.dataset.baseX || 0);
-      const imageBaseX = Number(image.dataset.baseX || 0);
-      gsap.to(media, { y: y * 22 * depth, x: mediaBaseX + x * 10 * depth, duration: 0.75, ease: 'power3.out', overwrite: true });
-      gsap.to(image, { xPercent: imageBaseX + x * 7 * depth, yPercent: y * 8 * depth, duration: 0.75, ease: 'power3.out', overwrite: true });
-    });
-  });
-
-  viewport?.addEventListener('mouseleave', () => {
-    if (carouselDragging) return;
-    gsap.to(track, { rotateY: 0, rotateX: 0, x: 0, duration: 0.8, ease: 'power3.out', overwrite: true });
-    cards.forEach(card => {
-      const media = card.querySelector('.carousel-card-media');
-      const image = card.querySelector('img');
-      if (!media || !image) return;
-      gsap.to(media, { y: 0, x: Number(media.dataset.baseX || 0), duration: 0.85, ease: 'power3.out', overwrite: true });
-      gsap.to(image, { xPercent: Number(image.dataset.baseX || 0), yPercent: 0, duration: 0.85, ease: 'power3.out', overwrite: true });
-    });
   });
 
   track?.addEventListener('click', event => {
     const card = event.target.closest('.carousel-card');
     if (!card || carouselDragging) return;
-    const nextIndex = Number(card.dataset.index || 0);
-    if (nextIndex !== activeIndex) {
-      goToSlide(nextIndex);
-      startAutoplay();
-    }
+    pauseAutoplay();
+    goToSlide(Number(card.dataset.index || 0));
+    startAutoplay();
   });
 
+  document.querySelector('.carousel-dots')?.addEventListener('click', event => {
+    const dot = event.target.closest('.carousel-dot');
+    if (!dot) return;
+    pauseAutoplay();
+    goToSlide(Number(dot.dataset.slide || 0));
+    startAutoplay();
+  });
+
+  let wheelLocked = false;
   viewport?.addEventListener('wheel', event => {
     if (Math.abs(event.deltaY) < 8 && Math.abs(event.deltaX) < 8) return;
     event.preventDefault();
-    goToSlide((Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY) > 0 ? activeIndex + 1 : activeIndex - 1);
+    if (wheelLocked) return;
+    wheelLocked = true;
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    pauseAutoplay();
+    goToSlide(delta > 0 ? activeIndex + 1 : activeIndex - 1);
     startAutoplay();
+    window.setTimeout(() => { wheelLocked = false; }, 420);
   }, { passive: false });
 
   viewport?.addEventListener('pointerdown', event => {
     carouselDragging = true;
     carouselPointerId = event.pointerId;
+    pauseAutoplay();
     carouselDragStartX = event.clientX;
+    carouselDragLastX = event.clientX;
+    viewport.classList.add('is-dragging');
     viewport.setPointerCapture(event.pointerId);
+  });
+  viewport?.addEventListener('pointermove', event => {
+    if (!carouselDragging || carouselPointerId !== event.pointerId || !track) return;
+    const delta = event.clientX - carouselDragLastX;
+    carouselDragLastX = event.clientX;
+    gsap.to(track, { x: `+=${delta}`, duration: 0.12, ease: 'power2.out', overwrite: true });
   });
   viewport?.addEventListener('pointerup', event => onCarouselPointerEnd(event.clientX));
   viewport?.addEventListener('pointerleave', event => {
@@ -401,7 +448,15 @@ function initCarousel() {
   viewport?.addEventListener('pointercancel', () => {
     carouselDragging = false;
     carouselPointerId = null;
+    viewport.classList.remove('is-dragging');
+    renderCarousel();
+    startAutoplay();
   });
+
+  viewport?.addEventListener('mouseenter', pauseAutoplay);
+  viewport?.addEventListener('mouseleave', startAutoplay);
+
+  window.addEventListener('resize', () => renderCarousel(true));
 }
 
 function renderProofs(immediate = false) {
@@ -439,7 +494,7 @@ function initProofs() {
   if (!proofsGrid || !proofTrack) return;
 
   proofsGrid.innerHTML = proofData.map((item, index) => `
-    <button class="proof-card reveal-up" data-proof-index="${index}" aria-label="Otwórz proof ${index + 1}">
+    <button class="proof-card reveal-up" data-proof-index="${index}" aria-label="Open proof ${index + 1}">
       <img src="${item.src}" alt="${item.title}">
       <div class="proof-card-copy">
         <span>Proof ${String(index + 1).padStart(2, '0')}</span>

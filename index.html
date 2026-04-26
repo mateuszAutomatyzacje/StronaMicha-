@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BM Bathrooms, Łazienki premium pod klucz</title>
-  <meta name="description" content="Remonty i wykończenia łazienek premium pod klucz. Realizacje z efektem wow, przemyślany projekt, dokładne wykonanie i dopracowany detal.">
+  <title>Build Masters Group Ltd, Bathroom Installation Specialists</title>
+  <meta name="description" content="Build Masters Group Ltd — bathroom installation specialists for London and surrounding areas. Full bathroom renovations, wetrooms, tiling, waterproofing, plumbing and finishing touches.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="site-loader" id="site-loader" aria-hidden="true">
+  <div class="site-loader premium-loader" id="site-loader" aria-hidden="true">
+    <div class="loader-percent" id="site-loader-label">0%</div>
     <div class="site-loader-panel">
-      <span class="site-loader-kicker">BM Bathrooms / immersive reveal loading</span>
-      <strong>Ładujemy realizację zanim pokażemy efekt końcowy.</strong>
+      <span class="site-loader-kicker">BATHROOMS • FINISHING • DETAIL</span>
+      <div class="loader-brand-lines">
+        <strong>BUILD MASTERS</strong>
+        <em>BATHROOM INSTALLATION SPECIALISTS</em>
+      </div>
       <div class="site-loader-bar"><span id="site-loader-progress"></span></div>
-      <small id="site-loader-label">0%</small>
+    </div>
+  </div>
+
+  <div class="intro-reveal" id="intro-reveal" aria-hidden="true">
+    <div class="intro-reveal-media">
+      <article class="intro-panel" data-intro-stage="before" style="--intro-bg:url('assets/progress/bath-01-before.jpg')"></article>
+      <article class="intro-panel" data-intro-stage="craft" style="--intro-bg:url('assets/progress/bath-01-during.jpg')"></article>
+      <article class="intro-panel" data-intro-stage="finish" style="--intro-bg:url('assets/img18.jpg')"></article>
+    </div>
+    <div class="intro-reveal-shade"></div>
+    <div class="intro-reveal-content">
+      <span class="intro-kicker">Immersive reveal animation</span>
+      <strong id="intro-title">Before</strong>
+      <p id="intro-text">We start with the real condition of the room.</p>
+      <div class="intro-progress"><span id="intro-progress-bar"></span></div>
+      <div class="intro-steps"><span>Before</span><span>Craft</span><span>Finish</span></div>
     </div>
   </div>
 
@@ -24,321 +43,313 @@
 
   <header class="topbar">
     <div class="container nav">
-      <a href="#start" class="brand-wrap" aria-label="BM Bathrooms, strona główna">
-        <img src="assets/logo.png" alt="BM Bathrooms" class="brand-logo">
+      <a href="#start" class="brand-wrap" aria-label="Build Masters Group Ltd, homepage">
+        <img src="assets/logo.png" alt="Build Masters Group Ltd" class="brand-logo">
         <span class="brand-copy">
-          <strong>BM Bathrooms</strong>
-          <small>Łazienki premium pod klucz</small>
+          <strong>BUILD MASTERS</strong>
+          <small>Bathroom Installation Specialists</small>
         </span>
       </a>
       <nav>
-        <a href="#oferta">Oferta</a>
-        <a href="#realizacje">Realizacje</a>
-        <a href="#opinie">Dowody</a>
-        <a href="#transformacje">Metamorfozy</a>
+        <a href="#process">Process</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
         <a href="#team">Team</a>
-        <a href="#kontakt" class="btn btn-small">Darmowa konsultacja</a>
+        <a href="mailto:buildmastersgroup@gmail.com" class="btn btn-small">Free quote</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="start" class="hero hero-immersive">
+    <section id="start" class="hero hero-immersive hero-premium">
       <div class="hero-backdrop" aria-hidden="true">
         <canvas class="hero-webgl" id="hero-webgl"></canvas>
         <div class="hero-backdrop-image"></div>
         <div class="hero-backdrop-vignette"></div>
         <div class="hero-backdrop-grid"></div>
+        <div class="background-word">DETAIL</div>
       </div>
 
       <div class="container hero-shell">
         <div class="hero-copy reveal-on-load">
-          <p class="eyebrow">Immersive reveal, wykonanie premium, efekt wow</p>
-          <h1>Wchodzisz na stronę tak, jak klient wchodzi do gotowej łazienki.</h1>
-          <p class="lead">Najpierw mocne wejście na realizację, potem płynne przejście w przestrzenny slider 3D. Ta sekcja jest zbudowana na prawdziwych zdjęciach realizacji, żeby od pierwszych sekund sprzedawać jakość wykonania.</p>
+          <p class="eyebrow">Build Masters Group Ltd • London & surrounding areas</p>
+          <h1>Bathroom installations, refined.</h1>
+          <p class="lead">Full bathroom renovations, wetrooms, tiling, waterproofing, plumbing and finishing touches — handled by bathroom installation specialists from consultation to final handover.</p>
           <div class="hero-actions">
-            <a href="#kontakt" class="btn">Umów konsultację</a>
-            <a href="#realizacje" class="btn btn-ghost">Zobacz realizacje</a>
+            <a href="mailto:buildmastersgroup@gmail.com" class="btn">Free quote</a>
+            <a href="#work" class="btn btn-ghost">View work</a>
           </div>
           <ul class="trust-list">
-            <li>Realne zdjęcia wykonanych łazienek</li>
-            <li>Od stanu surowego do gotowego efektu premium</li>
-            <li>Detale, oświetlenie, armatura i duże formaty</li>
+            <li>Reliable and professional service</li>
+            <li>Insured workmanship and start-to-finish project management</li>
+            <li>Clean, modern finishes with references available upon request</li>
           </ul>
         </div>
 
-        <div class="hero-stage reveal-on-load" aria-label="Wybrane realizacje łazienek">
+        <div class="hero-stage reveal-on-load hero-depth-stage" aria-label="Premium bathroom reveal">
           <div class="reveal-stack" id="reveal-stack">
-            <article class="reveal-panel is-active" style="--bg:url('assets/img18.jpg')">
-              <div class="reveal-info"><span>Realizacja premium</span><strong>Wanna wolnostojąca, światło i przestrzeń</strong></div>
+            <article class="reveal-panel is-active" data-stage="before" style="--bg:url('assets/progress/bath-01-before.jpg')">
+              <div class="reveal-info"><span>01 / Before</span><strong>First, we assess the space, substrate and installation layout.</strong></div>
             </article>
-            <article class="reveal-panel" style="--bg:url('assets/img22.jpg')">
-              <div class="reveal-info"><span>Minimal modern</span><strong>Miedź, kamień, czysta geometria</strong></div>
+            <article class="reveal-panel" data-stage="craft" style="--bg:url('assets/progress/bath-01-during.jpg')">
+              <div class="reveal-info"><span>02 / Craft</span><strong>Then waterproofing, tiling, fitting and detailed quality control.</strong></div>
             </article>
-            <article class="reveal-panel" style="--bg:url('assets/img20.jpg')">
-              <div class="reveal-info"><span>Signature finish</span><strong>Wzór, kontrast i detal armatury</strong></div>
+            <article class="reveal-panel" data-stage="finish" style="--bg:url('assets/img18.jpg')">
+              <div class="reveal-info"><span>03 / Handover</span><strong>Finally, a clean handover with a premium finish.</strong></div>
             </article>
           </div>
 
-          <div class="hero-stage-ui" aria-hidden="true">
-            <div class="hero-stage-chip">immersive reveal animation</div>
+          <div class="hero-stage-ui hero-reveal-ui" aria-hidden="true">
+            <div class="hero-stage-chip">Before → Craft → Finish</div>
             <div class="hero-stage-progress"><span id="hero-progress"></span></div>
+            <div class="hero-reveal-steps">
+              <span>Before</span><span>Craft</span><span>Finish</span>
+            </div>
           </div>
+        </div>
+      </div>
+      <a href="#quality" class="scroll-indicator" aria-label="Scroll to the next section">Scroll</a>
+    </section>
+
+    <section id="quality" class="section section-dark statement-section">
+      <div class="container statement-grid">
+        <div>
+          <p class="eyebrow">About the company</p>
+          <h2>Build Masters Group Ltd — bathroom installation specialists.</h2>
+        </div>
+        <div>
+          <p class="statement-copy">We deliver full bathroom renovations, wetroom installations, plumbing, electrical work, wall and floor tiling, bathroom fitting, waterproofing, tanking and finishing touches across London and surrounding areas. The goal is simple: reliable service, clean modern finishes and a managed process from quote to handover.</p>
+          <ul class="company-fact-list">
+            <li>Call: 07355 343226</li>
+            <li>Email: buildmastersgroup@gmail.com</li>
+            <li>London & surrounding areas</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="realizacje" class="section section-dark section-slider">
+    <section id="process" class="section section-process premium-process">
+      <div class="container">
+        <div class="process-head">
+          <p class="eyebrow">Signature process</p>
+          <h2>How we work — from quote to handover.</h2>
+        </div>
+        <div class="process-timeline premium-process-grid">
+          <article class="process-card reveal-up"><span>01</span><h3>Consultation & Quote</h3><p>We discuss ideas, needs and provide clear advice with a free, no-obligation quote.</p></article>
+          <article class="process-card reveal-up"><span>02</span><h3>Strip-out & Preparation</h3><p>Safe removal of existing fittings and full preparation of the space before installation starts.</p></article>
+          <article class="process-card reveal-up"><span>03</span><h3>Plumbing, Electrics & Boarding</h3><p>All plumbing, electrical work and waterproof boarding installed to the right standard.</p></article>
+          <article class="process-card reveal-up"><span>04</span><h3>Tiling & Installation</h3><p>Precision tiling and expert installation of fixtures, fittings and finishing elements.</p></article>
+          <article class="process-card reveal-up"><span>05</span><h3>Final Finish & Handover</h3><p>Quality checks, final detailing and a spotless handover of the completed bathroom.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section-dark services-section">
+      <div class="container">
+        <div class="section-split-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2>What we offer.</h2>
+          </div>
+        </div>
+        <div class="service-grid">
+          <article class="service-card reveal-up"><span>01</span><h3>Full Bathroom Renovations</h3><p>Complete bathroom renovation service from strip-out to final finish.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>02</span><h3>Wetroom Installations</h3><p>Wetroom layouts prepared around drainage, waterproofing, tiling and clean installation.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>03</span><h3>Plumbing & Pipework</h3><p>Pipework and plumbing handled as part of the wider bathroom installation process.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>04</span><h3>Electrical Work</h3><p>Electrical work coordinated with lighting, mirrors, ventilation and bathroom zones.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>05</span><h3>Wall & Floor Tiling</h3><p>Wall and floor tiling with attention to line, spacing, cuts and final finish.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>06</span><h3>Bathroom Fitting</h3><p>Fitting of sanitaryware, furniture, screens, accessories and final bathroom details.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>07</span><h3>Waterproofing & Tanking</h3><p>Waterproofing and tanking for wet areas before the visible finish is installed.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+          <article class="service-card reveal-up"><span>08</span><h3>Finishing Touches</h3><p>Clean modern finishes, sealing, detailing and handover-ready presentation.</p><a href="mailto:buildmastersgroup@gmail.com">Free quote</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section section-dark section-slider portfolio-3d-section">
       <div class="container slider-head">
         <div class="slider-head-copy">
-          <p class="eyebrow">3D slider animation</p>
-          <h2>Galeria, która wygląda jak premium showcase, nie jak zwykły katalog</h2>
-        </div>
-        <div class="slider-side-panel reveal-up">
-          <p class="section-lead">Research first: mocna typografia, spokojny rytm, motion jako akcent i czytelna nawigacja. Dlatego ta sekcja ma teraz bardziej editorial układ, większą przestrzeń i wyraźniejsze sterowanie.</p>
-          <div class="slider-side-stats">
-            <div><strong>3D</strong><span>depth motion</span></div>
-            <div><strong>drag</strong><span>mouse / touch</span></div>
-            <div><strong>click</strong><span>card navigation</span></div>
-          </div>
+          <p class="eyebrow">Work / 3D gallery</p>
+          <h2>Portfolio with 3D depth.</h2>
         </div>
       </div>
 
       <div class="container carousel-wrap">
         <div class="carousel-shell">
-          <div class="carousel-viewport" id="carousel-viewport">
+          <div class="carousel-viewport carousel-viewport-3d" id="carousel-viewport">
             <div class="carousel-track" id="carousel-track"></div>
           </div>
-          <div class="carousel-controls" aria-label="Sterowanie galerią realizacji">
-            <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Poprzedni slajd">‹</button>
-            <div class="carousel-controls-copy">klik, przeciągnij albo przewiń</div>
-            <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Następny slajd">›</button>
+          <div class="carousel-controls" aria-label="Project gallery controls">
+            <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Previous slide">‹</button>
+            <div class="carousel-controls-copy">scroll / drag / click</div>
+            <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Next slide">›</button>
           </div>
         </div>
       </div>
 
       <div class="container slider-meta">
         <div class="slider-caption">
-          <span id="slider-counter">01 / 12</span>
-          <strong id="slider-title">Łazienka premium</strong>
-          <p id="slider-text">Dobór faktur, światła i armatury tak, żeby zdjęcie robiło robotę jeszcze zanim klient przeczyta ofertę.</p>
+          <span id="slider-counter">01 / 08</span>
+          <strong id="slider-title">Premium bathroom finish</strong>
+          <p id="slider-text">A complete bathroom view showing the final standard: light, surfaces, fittings and a calm premium finish.</p>
+        </div>
+      </div>
+
+      <div class="container work-mosaic reveal-up" aria-label="Asymmetrical project detail grid">
+        <article class="mosaic-card mosaic-large"><img src="assets/img18.jpg" alt="Finished premium bathroom"><span>Finished space</span></article>
+        <article class="mosaic-card"><img src="assets/img21.jpg" alt="Fittings and glass detail"><span>Fitting detail</span></article>
+        <article class="mosaic-card"><img src="assets/img17.jpg" alt="Bathroom finish detail"><span>Finish lines</span></article>
+        <article class="mosaic-card mosaic-tall"><img src="assets/img19.jpg" alt="Vertical bathroom lighting view"><span>Light and verticals</span></article>
+        <article class="mosaic-card mosaic-wide"><img src="assets/progress/bath-01-during.jpg" alt="Bathroom installation in progress"><span>Work in progress</span></article>
+      </div>
+    </section>
+
+    <section id="transformations" class="section transformations-section">
+      <div class="container">
+        <p class="eyebrow">Before / during / after</p>
+        <h2>A visible process, not just a promise.</h2>
+        <p class="section-lead">Each card has three stages. Move the slider to see the project progress from preparation, through installation, to a premium finished result.</p>
+        <div class="transformations-grid" id="transformations-grid">
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head"><span>Case 01</span><strong>Shower zone and recess</strong></div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-01-before.jpg" alt="Bathroom before renovation" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-01-during.jpg" alt="Bathroom during renovation" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-01-after.jpg" alt="Bathroom after renovation" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs"><button class="phase-tab is-active" data-phase-target="0">Before</button><button class="phase-tab" data-phase-target="1">During</button><button class="phase-tab" data-phase-target="2">After</button></div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Project stage comparison">
+            </div>
+          </article>
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head"><span>Case 02</span><strong>Built-in elements, floor and finishing stage</strong></div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-02-before.jpg" alt="Before renovation, raw condition" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-02-during.jpg" alt="During tiling and built-in installation" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-02-after.jpg" alt="After renovation, finished bathroom" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs"><button class="phase-tab is-active" data-phase-target="0">Before</button><button class="phase-tab" data-phase-target="1">During</button><button class="phase-tab" data-phase-target="2">After</button></div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Project stage comparison">
+            </div>
+          </article>
+          <article class="phase-card reveal-up" data-phase-card>
+            <div class="phase-card-head"><span>Case 03</span><strong>Upper built-in area and final vanity detail</strong></div>
+            <div class="phase-stage" data-phase-stage>
+              <img src="assets/progress/bath-03-before.jpg" alt="Before finishing" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/bath-03-during.jpg" alt="During final works" class="phase-image" data-phase-image>
+              <img src="assets/progress/bath-03-after.jpg" alt="After finishing" class="phase-image" data-phase-image>
+            </div>
+            <div class="phase-controls">
+              <div class="phase-tabs"><button class="phase-tab is-active" data-phase-target="0">Before</button><button class="phase-tab" data-phase-target="1">During</button><button class="phase-tab" data-phase-target="2">After</button></div>
+              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Project stage comparison">
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="oferta" class="section">
-      <div class="container">
-        <p class="eyebrow">Oferta</p>
-        <h2>Co klient kupuje naprawdę</h2>
-        <div class="grid three">
-          <article class="tile reveal-up">
-            <h3>Kompleksowy remont łazienki</h3>
-            <p>Demontaż, instalacje, hydroizolacja, płytki, zabudowy, armatura, oświetlenie i finalne wykończenie.</p>
-          </article>
-          <article class="tile reveal-up">
-            <h3>Efekt premium bez chaosu</h3>
-            <p>Klient nie kupuje tylko robocizny. Kupuje spokój, porządek, estetykę i efekt końcowy, który robi wrażenie na żywo.</p>
-          </article>
-          <article class="tile reveal-up">
-            <h3>Od koncepcji do detalu</h3>
-            <p>Pomoc przy doborze materiałów, proporcji, kolorystyki i rozwiązań praktycznych, które będą dobrze wyglądać przez lata.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="opinie" class="section section-dark proofs-section">
-      <div class="container">
-        <p class="eyebrow">Proofs / dokumenty / wiadomości</p>
-        <h2>Pełny podgląd screenów, dokumentów i wiadomości</h2>
-        <p class="section-lead">Zamiast martwej sekcji z cytatami wrzucam tu realne dowody. Klikasz dowolny screen, otwierasz viewer 3D, przewijasz strzałkami albo przeciągnięciem.</p>
-        <div class="proofs-grid" id="proofs-grid"></div>
-      </div>
-    </section>
-
-    <section id="team" class="section section-team">
+    <section id="team" class="section team-section">
       <div class="container">
         <p class="eyebrow">Team</p>
-        <h2>Ludzie, którzy dowożą efekt końcowy</h2>
-        <div class="grid two team-grid">
-          <article class="team-card reveal-up">
-            <span class="team-role">Co-owner / client side</span>
-            <h3>Michał</h3>
-            <p>Kontakt z klientem, konsultacje, wycena, układ projektu i dopięcie całej realizacji od pierwszej rozmowy do odbioru.</p>
+        <h2>The people responsible for delivery.</h2>
+        <div class="team-grid-simple">
+          <article class="team-profile reveal-up">
+            <span class="team-role">Client side / project lead</span>
+            <h3>Michal</h3>
+            <p>Leads client communication, scope alignment, consultations, quotation and the next project steps.</p>
           </article>
-          <article class="team-card reveal-up">
+          <article class="team-profile reveal-up">
             <span class="team-role">Lead installer</span>
             <h3>Vasyl Dorosh</h3>
-            <p>Doświadczenie w pracach łazienkowych i wykończeniowych, skupienie na detalu, jakości montażu oraz czystym, dopracowanym finale.</p>
+            <p>Responsible for bathroom and finishing works, installation, detailing and on-site quality.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="proces" class="section section-process">
+    <section id="references" class="section section-dark proofs-section">
       <div class="container">
-        <p class="eyebrow">Proces</p>
-        <h2>Jak wygląda współpraca</h2>
-        <div class="grid three steps">
-          <article class="tile reveal-up"><strong>1</strong><h3>Rozmowa i zdjęcia</h3><p>Zbieramy potrzeby, styl, budżet i zakres. Już na tym etapie wiadomo, czy idziemy w minimal premium, kamień, kontrast czy coś bardziej odważnego.</p></article>
-          <article class="tile reveal-up"><strong>2</strong><h3>Wycena i harmonogram</h3><p>Klient dostaje jasny plan prac, etapy i widełki materiałowe. Bez chaosu i bez zgadywania, co będzie dalej.</p></article>
-          <article class="tile reveal-up"><strong>3</strong><h3>Realizacja i odbiór</h3><p>Wchodzicie na budowę, prowadzicie projekt do końca i oddajecie gotową łazienkę, która wygląda jak z dobrze zrobionego portfolio.</p></article>
-        </div>
+        <p class="eyebrow">Documents / messages / references</p>
+        <h2>References available on request.</h2>
+        <p class="section-lead">Original client reference screenshots — kept intact, without rewriting or altering the message content.</p>
+        <div class="proofs-grid" id="proofs-grid"></div>
       </div>
     </section>
 
     <section id="credentials" class="section section-credentials">
       <div class="container">
-        <p class="eyebrow">Ubezpieczenie i certyfikaty</p>
-        <h2>Zaufanie budowane nie tylko zdjęciami</h2>
+        <p class="eyebrow">Insurance and certificates</p>
+        <h2>Trust built through process, insurance and references.</h2>
         <div class="grid three credentials-grid">
-          <article class="credential-card reveal-up">
+          <article class="credential-card credential-card-with-proof reveal-up">
             <span class="credential-kicker">Insurance</span>
             <h3>Simply Business</h3>
-            <p>Build Masters Group posiada aktywny certificate of insurance dla działalności związanej z plumbing, heating and ventilation.</p>
-            <ul>
-              <li>Public liability do £5,000,000</li>
-              <li>Polisa aktywna od 23 Apr 2026 do 22 Apr 2027</li>
-            </ul>
+            <p>Build Masters Group holds an active certificate of insurance for plumbing, heating and ventilation-related work.</p>
+            <ul><li>Public liability up to £5,000,000</li><li>Policy active from 23 Apr 2026 to 22 Apr 2027</li></ul>
+            <a class="certificate-preview certificate-insurance" href="assets/certificates/simply-business-insurance.jpg" target="_blank" rel="noopener" aria-label="Open Simply Business certificate">
+              <img src="assets/certificates/simply-business-insurance.jpg" alt="Simply Business Certificate of Insurance for Build Masters Group">
+            </a>
           </article>
-          <article class="credential-card reveal-up">
+          <article class="credential-card credential-card-with-proof reveal-up">
             <span class="credential-kicker">Training</span>
             <h3>UKAs Certificate of Training</h3>
-            <p>Vasyl Dorosh ukończył i zdał Asbestos Awareness Course zgodny z Control of Asbestos Regulations 2012.</p>
-            <ul>
-              <li>Data certyfikatu: 22 Apr 2026</li>
-              <li>ID certyfikatu: A8932693</li>
-            </ul>
+            <p>Vasyl Dorosh completed and passed an Asbestos Awareness Course aligned with the Control of Asbestos Regulations 2012.</p>
+            <ul><li>Certificate date: 22 Apr 2026</li><li>Certificate ID: A8932693</li></ul>
+            <a class="certificate-preview certificate-training" href="assets/certificates/ukas-asbestos-training.jpg" target="_blank" rel="noopener" aria-label="Open UKAs certificate">
+              <img src="assets/certificates/ukas-asbestos-training.jpg" alt="UKAs Certificate of Training Asbestos Awareness Course for Vasyl Dorosh">
+            </a>
           </article>
           <article class="credential-card reveal-up">
             <span class="credential-kicker">Trust</span>
-            <h3>Realne referencje</h3>
-            <p>Potwierdzenia od wcześniejszych klientów są zebrane i mogą zostać udostępnione w procesie rozmowy lub wyceny.</p>
-            <ul>
-              <li>Opinie po wykonaniu łazienek i prac glazurniczych</li>
-              <li>Kontakt referencyjny udostępniany na prośbę</li>
-            </ul>
+            <h3>Real references</h3>
+            <p>References from previous clients are collected and may be shared during the enquiry or quotation process.</p>
+            <ul><li>Feedback after bathroom and tiling projects</li><li>Reference contact available on request</li></ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="transformacje" class="section transformations-section">
-      <div class="container">
-        <p class="eyebrow">Before / during / after</p>
-        <h2>Od stanu surowego do gotowej łazienki</h2>
-        <p class="section-lead">Każda karta ma 3 etapy. Przesuwasz suwak i widzisz, jak projekt przechodzi od przygotowania, przez montaż, do gotowego efektu premium.</p>
-        <div class="transformations-grid" id="transformations-grid">
-          <article class="phase-card reveal-up" data-phase-card>
-            <div class="phase-card-head">
-              <span>Case 01</span>
-              <strong>Strefa prysznica i wnęka</strong>
-            </div>
-            <div class="phase-stage" data-phase-stage>
-              <img src="assets/progress/bath-01-before.jpg" alt="Łazienka przed remontem" class="phase-image is-active" data-phase-image>
-              <img src="assets/progress/bath-01-during.jpg" alt="Łazienka w trakcie remontu" class="phase-image" data-phase-image>
-              <img src="assets/progress/bath-01-after.jpg" alt="Łazienka po remoncie" class="phase-image" data-phase-image>
-            </div>
-            <div class="phase-controls">
-              <div class="phase-tabs">
-                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
-                <button class="phase-tab" data-phase-target="1">W trakcie</button>
-                <button class="phase-tab" data-phase-target="2">Po</button>
-              </div>
-              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
-            </div>
-          </article>
-
-          <article class="phase-card reveal-up" data-phase-card>
-            <div class="phase-card-head">
-              <span>Case 02</span>
-              <strong>Zabudowa, podłoga, wejście w wykończenie</strong>
-            </div>
-            <div class="phase-stage" data-phase-stage>
-              <img src="assets/progress/bath-02-before.jpg" alt="Przed remontem, stan surowy" class="phase-image is-active" data-phase-image>
-              <img src="assets/progress/bath-02-during.jpg" alt="W trakcie układania i zabudowy" class="phase-image" data-phase-image>
-              <img src="assets/progress/bath-02-after.jpg" alt="Po remoncie, gotowa łazienka" class="phase-image" data-phase-image>
-            </div>
-            <div class="phase-controls">
-              <div class="phase-tabs">
-                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
-                <button class="phase-tab" data-phase-target="1">W trakcie</button>
-                <button class="phase-tab" data-phase-target="2">Po</button>
-              </div>
-              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
-            </div>
-          </article>
-
-          <article class="phase-card reveal-up" data-phase-card>
-            <div class="phase-card-head">
-              <span>Case 03</span>
-              <strong>Góra zabudowy i finalny detal strefy umywalki</strong>
-            </div>
-            <div class="phase-stage" data-phase-stage>
-              <img src="assets/progress/bath-03-before.jpg" alt="Przed wykończeniem" class="phase-image is-active" data-phase-image>
-              <img src="assets/progress/bath-03-during.jpg" alt="W trakcie dopinania prac" class="phase-image" data-phase-image>
-              <img src="assets/progress/bath-03-after.jpg" alt="Po wykończeniu" class="phase-image" data-phase-image>
-            </div>
-            <div class="phase-controls">
-              <div class="phase-tabs">
-                <button class="phase-tab is-active" data-phase-target="0">Przed</button>
-                <button class="phase-tab" data-phase-target="1">W trakcie</button>
-                <button class="phase-tab" data-phase-target="2">Po</button>
-              </div>
-              <input type="range" min="0" max="2" step="1" value="0" class="phase-range" data-phase-range aria-label="Porównanie etapów realizacji">
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt" class="section cta">
-      <div class="container cta-box">
-        <div>
-          <p class="eyebrow">Kontakt</p>
-          <h2>Chcesz podobną łazienkę u siebie?</h2>
-          <p>Napisz, podeślij zdjęcia obecnej przestrzeni i opowiedz, jaki efekt chcesz osiągnąć. Wstępnie ocenimy zakres i najlepszy kierunek realizacji.</p>
-        </div>
-        <div class="cta-actions">
-          <a href="tel:+48123456789" class="btn">Zadzwoń teraz</a>
-          <a href="mailto:kontakt@bmbathrooms.pl" class="btn btn-ghost">Napisz maila</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-main">
       <div>
-        <strong>BM Bathrooms</strong>
-        <p>Remonty łazienek premium pod klucz, detale, realizacja i efekt końcowy, który robi robotę.</p>
+        <strong>BUILD MASTERS GROUP LTD</strong>
+        <p>Bathroom installation specialists for London and surrounding areas: full renovations, wetrooms, tiling, waterproofing, plumbing and finishing touches.</p>
       </div>
       <div class="footer-links">
-        <a href="#realizacje">Realizacje</a>
-        <a href="#opinie">Dowody</a>
-        <a href="#transformacje">Metamorfozy</a>
+        <a href="#process">Process</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
         <a href="#team">Team</a>
-        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-links footer-links-legal">
+        <span class="footer-section-title">Legal</span>
+        <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="cookies-policy.html" target="_blank" rel="noopener">Cookie Policy</a>
+        <a href="gdpr.html" target="_blank" rel="noopener">UK GDPR</a>
       </div>
       <div class="footer-links footer-links-contact">
-        <a href="tel:+48123456789">+48 123 456 789</a>
-        <a href="mailto:kontakt@bmbathrooms.pl">kontakt@bmbathrooms.pl</a>
+        <span class="footer-section-title">Contact</span>
+        <a href="tel:+447355343226">07355 343226</a>
+        <a href="mailto:buildmastersgroup@gmail.com">buildmastersgroup@gmail.com</a>
       </div>
     </div>
     <div class="container footer-row">
-      <span>© 2026 BM Bathrooms</span>
-      <span>Remonty łazienek premium pod klucz</span>
+      <span>© 2026 Build Masters Group Ltd</span>
+      <span>Bathroom Installation Specialists • London & surrounding areas</span>
     </div>
   </footer>
 
   <div class="proof-viewer" id="proof-viewer" aria-hidden="true">
-    <button class="proof-viewer-close" id="proof-close" aria-label="Zamknij viewer">×</button>
+    <button class="proof-viewer-close" id="proof-close" aria-label="Close viewer">×</button>
     <div class="proof-viewer-shell">
-      <button class="proof-arrow proof-arrow-prev" id="proof-prev" aria-label="Poprzedni proof">‹</button>
+      <button class="proof-arrow proof-arrow-prev" id="proof-prev" aria-label="Previous proof">‹</button>
       <div class="proof-viewport" id="proof-viewport">
         <div class="proof-track" id="proof-track"></div>
       </div>
-      <button class="proof-arrow proof-arrow-next" id="proof-next" aria-label="Następny proof">›</button>
+      <button class="proof-arrow proof-arrow-next" id="proof-next" aria-label="Next proof">›</button>
     </div>
     <div class="proof-meta">
       <span id="proof-counter">01 / 01</span>
