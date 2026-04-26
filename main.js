@@ -21,6 +21,7 @@ const proofData = [
 ];
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobileIntroRisk = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches || /Android|SamsungBrowser/i.test(navigator.userAgent);
 const body = document.body;
 const siteLoader = document.getElementById('site-loader');
 const siteLoaderProgress = document.getElementById('site-loader-progress');
@@ -242,7 +243,7 @@ function initHeroAnimations() {
   setHeroSlide(2, true);
   gsap.set(['.topbar', '.hero-copy', '.hero-copy *', '.hero-stage'], { clearProps: 'opacity,transform' });
 
-  if (prefersReducedMotion || !introReveal || introPanels.length < 3) {
+  if (prefersReducedMotion || isMobileIntroRisk || !introReveal || introPanels.length < 3) {
     finishIntroReveal();
     return;
   }
