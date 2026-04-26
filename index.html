@@ -395,7 +395,21 @@
       <small id="quote-copy-status" aria-live="polite"></small>
     </section>
   </div>
+  <script>
+    window.addEventListener('click', function(event) {
+      var opener = event.target.closest && event.target.closest('[data-quote-open]');
+      if (!opener) return;
+      event.preventDefault();
+      var modal = document.getElementById('quote-modal');
+      var status = document.getElementById('quote-copy-status');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('quote-modal-open');
+      if (status) status.textContent = '';
+    });
+  </script>
 
-  <script type="module" src="main.js"></script>
+  <script type="module" src="main.js?v=20260426-2230"></script>
 </body>
 </html>
