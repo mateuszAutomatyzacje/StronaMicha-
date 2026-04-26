@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260426-2214">
+  <link rel="stylesheet" href="styles.css?v=20260426-2225">
 </head>
 <body>
   <div class="site-loader premium-loader" id="site-loader" aria-hidden="true">
@@ -55,7 +55,7 @@
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#team">Team</a>
-        <a href="mailto:buildmastersgroup@gmail.com" class="btn btn-small nav-quote">Free quote</a>
+        <button type="button" class="btn btn-small nav-quote" data-quote-open>Free quote</button>
       </nav>
     </div>
   </header>
@@ -370,6 +370,30 @@
       <strong id="proof-title">Proof</strong>
       <p id="proof-text"></p>
     </div>
+  </div>
+
+
+  <div class="quote-modal" id="quote-modal" aria-hidden="true">
+    <div class="quote-modal-backdrop" data-quote-close></div>
+    <section class="quote-modal-card" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+      <button type="button" class="quote-modal-close" data-quote-close aria-label="Close quote contact window">×</button>
+      <p class="eyebrow">Free quote</p>
+      <h2 id="quote-modal-title">Free quote contact</h2>
+      <p>Send bathroom photos or call directly. We will come back with the direction, scope and next step.</p>
+      <div class="quote-contact-grid">
+        <div class="quote-contact-item">
+          <span>Phone</span>
+          <strong>07355 343226</strong>
+          <button type="button" data-copy="07355 343226">Copy number</button>
+        </div>
+        <div class="quote-contact-item">
+          <span>Email</span>
+          <strong>buildmastersgroup@gmail.com</strong>
+          <button type="button" data-copy="buildmastersgroup@gmail.com">Copy email</button>
+        </div>
+      </div>
+      <small id="quote-copy-status" aria-live="polite"></small>
+    </section>
   </div>
 
   <script type="module" src="main.js"></script>

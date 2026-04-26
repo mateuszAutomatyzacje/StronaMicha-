@@ -605,6 +605,54 @@ function initRevealObserver() {
   document.querySelectorAll('.reveal-up').forEach(item => observer.observe(item));
 }
 
+
+const quoteModal = document.getElementById('quote-modal');
+const quoteOpeners = [...document.querySelectorAll('[data-quote-open]')];
+const quoteClosers = [...document.querySelectorAll('[data-quote-close]')];
+const quoteCopyStatus = document.getElementById('quote-copy-status');
+
+function openQuoteModal() {
+  if (!quoteModal) return;
+  quoteModal.classList.add('is-open');
+  quoteModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('quote-modal-open');
+  if (quoteCopyStatus) quoteCopyStatus.textContent = '';
+}
+
+function closeQuoteModal() {
+  if (!quoteModal) return;
+  quoteModal.classList.remove('is-open');
+  quoteModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('quote-modal-open');
+}
+
+quoteOpeners.forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    openQuoteModal();
+  });
+});
+
+quoteClosers.forEach(button => {
+  button.addEventListener('click', closeQuoteModal);
+});
+
+document.querySelectorAll('[data-copy]').forEach(button => {
+  button.addEventListener('click', async () => {
+    const value = button.dataset.copy || '';
+    try {
+      await navigator.clipboard.writeText(value);
+      if (quoteCopyStatus) quoteCopyStatus.textContent = 'Copied to clipboard';
+    } catch {
+      if (quoteCopyStatus) quoteCopyStatus.textContent = value;
+    }
+  });
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeQuoteModal();
+});
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', event => {
     const selector = link.getAttribute('href');

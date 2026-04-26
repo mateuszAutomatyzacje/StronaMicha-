@@ -2762,3 +2762,155 @@ body.is-intro-revealing footer {
 .services-contact-strip a:last-child {
   padding-right: 4px;
 }
+
+/* Free quote contact modal */
+.nav-quote {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.quote-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .28s ease, visibility .28s ease;
+}
+.quote-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.quote-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(14px);
+}
+.quote-modal-card {
+  position: relative;
+  width: min(720px, 100%);
+  padding: clamp(26px, 5vw, 48px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(217,178,102,.18), transparent 32%),
+    linear-gradient(145deg, rgba(18,20,26,.96), rgba(5,5,5,.98));
+  color: var(--text);
+  box-shadow: 0 44px 140px rgba(0,0,0,.54);
+  transform: translateY(18px) scale(.98);
+  transition: transform .32s cubic-bezier(.19,1,.22,1);
+}
+.quote-modal.is-open .quote-modal-card {
+  transform: translateY(0) scale(1);
+}
+.quote-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  color: white;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.quote-modal-card h2 {
+  max-width: 560px;
+  margin: 0 0 16px;
+  font-size: clamp(2.4rem, 6vw, 4.9rem);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+.quote-modal-card p {
+  max-width: 560px;
+  color: rgba(238,241,246,.72);
+  line-height: 1.7;
+}
+.quote-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 14px;
+  margin-top: 26px;
+}
+.quote-contact-item {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 22px;
+  background: rgba(255,255,255,.045);
+}
+.quote-contact-item span {
+  color: var(--gold-soft);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.quote-contact-item strong {
+  color: white;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  overflow-wrap: anywhere;
+}
+.quote-contact-item button {
+  width: fit-content;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: #050505;
+  cursor: pointer;
+  font-weight: 900;
+}
+#quote-copy-status {
+  min-height: 18px;
+  display: block;
+  margin-top: 14px;
+  color: rgba(247,225,169,.86);
+  font-weight: 800;
+}
+body.quote-modal-open {
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .quote-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quote-modal-card {
+  width: min(820px, 100%);
+}
+.quote-modal-card h2 {
+  max-width: 640px;
+  font-size: clamp(2.25rem, 5vw, 4.1rem);
+}
+.quote-contact-grid {
+  grid-template-columns: .85fr 1.45fr;
+}
+.quote-contact-item strong {
+  font-size: clamp(.98rem, 1.45vw, 1.22rem);
+  line-height: 1.35;
+}
+.quote-contact-item:nth-child(2) strong {
+  font-size: clamp(.92rem, 1.28vw, 1.06rem);
+}
+
+.quote-modal-backdrop {
+  background: rgba(0,0,0,.84);
+  backdrop-filter: blur(20px);
+}
+.quote-modal-card {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(217,178,102,.14), transparent 30%),
+    linear-gradient(145deg, #15171d 0%, #050505 100%);
+}
