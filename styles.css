@@ -2937,3 +2937,70 @@ body.quote-modal-open {
     radial-gradient(circle at 82% 12%, rgba(217,178,102,.14), transparent 30%),
     linear-gradient(145deg, #15171d 0%, #050505 100%);
 }
+
+/* Compact legal prose pages */
+.legal-text-page {
+  padding: 58px 0 96px;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 78% 4%, rgba(217,178,102,.14), transparent 26%),
+    linear-gradient(180deg, #0d1119 0%, #050505 100%);
+}
+.legal-prose-document {
+  width: min(920px, calc(100% - 40px));
+  padding: clamp(28px, 5vw, 58px);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.028));
+  box-shadow: 0 34px 110px rgba(0,0,0,.28);
+}
+.legal-back {
+  width: fit-content;
+  margin-bottom: 34px;
+}
+.legal-prose-document h1 {
+  margin: 0 0 12px;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+.legal-effective {
+  margin: 0 0 34px !important;
+  color: var(--gold-soft) !important;
+  font-weight: 800;
+}
+.legal-prose-document h2 {
+  margin: 34px 0 12px;
+  color: #fff;
+  font-size: clamp(1.35rem, 2.4vw, 2.05rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.legal-prose-document p {
+  margin: 0 0 16px;
+  color: rgba(238,241,246,.74);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+.legal-prose-document a:not(.btn) {
+  color: var(--gold-soft);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.legal-note {
+  margin-top: 38px !important;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  color: rgba(238,241,246,.55) !important;
+  font-size: .92rem !important;
+}
+@media (max-width: 720px) {
+  .legal-text-page {
+    padding-top: 34px;
+  }
+  .legal-prose-document {
+    border-radius: 24px;
+  }
+}
