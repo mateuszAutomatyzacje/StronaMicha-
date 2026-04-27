@@ -132,8 +132,9 @@
         <div class="process-head">
           <p class="eyebrow">Signature process</p>
           <h2>How we work — from quote to handover.</h2>
+          <button type="button" class="btn btn-small section-more-btn" data-expand-target="process-more" aria-expanded="false">Show more</button>
         </div>
-        <div class="process-timeline premium-process-grid">
+        <div class="process-timeline premium-process-grid expandable-grid is-collapsed" id="process-more" data-expand-panel>
           <article class="process-card reveal-up"><span>01</span><h3>Consultation & Quote</h3><p>We discuss ideas, needs and provide clear advice with a free, no-obligation quote.</p></article>
           <article class="process-card reveal-up"><span>02</span><h3>Strip-out & Preparation</h3><p>Safe removal of existing fittings and full preparation of the space before installation starts.</p></article>
           <article class="process-card reveal-up"><span>03</span><h3>Plumbing, Electrics & Boarding</h3><p>All plumbing, electrical work and waterproof boarding installed to the right standard.</p></article>
@@ -149,6 +150,7 @@
           <div>
             <p class="eyebrow">Services</p>
             <h2>What we offer.</h2>
+            <button type="button" class="btn btn-small section-more-btn" data-expand-target="services-more" aria-expanded="false">Show more</button>
           </div>
         </div>
         <div class="services-contact-strip reveal-up">
@@ -156,7 +158,7 @@
           <a href="tel:+447355343226">07355 343226</a>
           <a href="mailto:buildmastersgroup@gmail.com">buildmastersgroup@gmail.com</a>
         </div>
-        <div class="service-grid">
+        <div class="service-grid expandable-grid is-collapsed" id="services-more" data-expand-panel>
           <article class="service-card reveal-up"><span>01</span><h3>Full Bathroom Renovations</h3><p>Complete bathroom renovation service from strip-out to final finish.</p></article>
           <article class="service-card reveal-up"><span>02</span><h3>Wetroom Installations</h3><p>Wetroom layouts prepared around drainage, waterproofing, tiling and clean installation.</p></article>
           <article class="service-card reveal-up"><span>03</span><h3>Plumbing & Pipework</h3><p>Pipework and plumbing handled as part of the wider bathroom installation process.</p></article>
@@ -214,11 +216,15 @@
         <p class="section-lead">Each card has three stages. Move the slider to see the project progress from preparation, through installation, to a premium finished result.</p>
         <div class="transformations-grid" id="transformations-grid">
           <article class="phase-card reveal-up" data-phase-card>
-            <div class="phase-card-head"><span>Case 01</span><strong>Shower zone and recess</strong></div>
+            <div class="phase-card-head">
+              <span>Case 01</span>
+              <strong>Shower zone and recess</strong>
+              <p>A stripped-out bathroom, a visible rebuild, and a finished shower zone with clean detailing.</p>
+            </div>
             <div class="phase-stage" data-phase-stage>
-              <img src="assets/progress/bath-01-before.jpg" alt="Bathroom before renovation" class="phase-image is-active" data-phase-image>
-              <img src="assets/progress/bath-01-during.jpg" alt="Bathroom during renovation" class="phase-image" data-phase-image>
-              <img src="assets/progress/bath-01-after.jpg" alt="Bathroom after renovation" class="phase-image" data-phase-image>
+              <img src="assets/progress/case-01-before.jpg" alt="Before renovation, old bathtub and stripped bathroom walls" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/case-01-during.jpg" alt="During renovation, stripped shower zone with tools and rubbish bag" class="phase-image" data-phase-image>
+              <img src="assets/progress/case-01-after.jpg" alt="After renovation, finished bathroom with shower, vanity and toilet" class="phase-image" data-phase-image>
             </div>
             <div class="phase-controls">
               <div class="phase-tabs"><button class="phase-tab is-active" data-phase-target="0">Before</button><button class="phase-tab" data-phase-target="1">During</button><button class="phase-tab" data-phase-target="2">After</button></div>
@@ -240,9 +246,9 @@
           <article class="phase-card reveal-up" data-phase-card>
             <div class="phase-card-head"><span>Case 03</span><strong>Upper built-in area and final vanity detail</strong></div>
             <div class="phase-stage" data-phase-stage>
-              <img src="assets/progress/bath-03-before.jpg" alt="Before finishing" class="phase-image is-active" data-phase-image>
-              <img src="assets/progress/bath-03-during.jpg" alt="During final works" class="phase-image" data-phase-image>
-              <img src="assets/progress/bath-03-after.jpg" alt="After finishing" class="phase-image" data-phase-image>
+              <img src="assets/progress/case-03-before.jpg" alt="Before renovation, stripped bathroom with ladder, tools and exposed floorboards" class="phase-image is-active" data-phase-image>
+              <img src="assets/progress/case-03-during.jpg" alt="During renovation, floor tiling in progress with protective board and tools" class="phase-image" data-phase-image>
+              <img src="assets/progress/case-03-after.jpg" alt="After renovation, finished shower and bath zone with brass fittings" class="phase-image" data-phase-image>
             </div>
             <div class="phase-controls">
               <div class="phase-tabs"><button class="phase-tab is-active" data-phase-target="0">Before</button><button class="phase-tab" data-phase-target="1">During</button><button class="phase-tab" data-phase-target="2">After</button></div>

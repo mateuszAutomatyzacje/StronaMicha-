@@ -588,6 +588,31 @@ function initPhaseSliders() {
   });
 }
 
+
+function initExpandableSections() {
+  document.querySelectorAll('[data-expand-target]').forEach(button => {
+    const panel = document.getElementById(button.dataset.expandTarget || '');
+    if (!panel) return;
+    const cards = [...panel.querySelectorAll('.process-card, .service-card')];
+    gsap.set(cards, { opacity: 0, y: 28, scale: 0.96 });
+
+    button.addEventListener('click', () => {
+      panel.classList.remove('is-collapsed');
+      panel.classList.add('is-expanded');
+      button.setAttribute('aria-expanded', 'true');
+      button.classList.add('is-hidden');
+      gsap.fromTo(cards,
+        { opacity: 0, y: 28, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: prefersReducedMotion ? 0 : 0.62, stagger: 0.09, ease: 'power3.out', overwrite: true }
+      );
+      window.setTimeout(() => {
+        const top = panel.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }, 80);
+    }, { once: true });
+  });
+}
+
 function initRevealObserver() {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -603,7 +628,10 @@ function initRevealObserver() {
     });
   }, { threshold: 0.18 });
 
-  document.querySelectorAll('.reveal-up').forEach(item => observer.observe(item));
+  document.querySelectorAll('.reveal-up').forEach(item => {
+    if (item.closest('[data-expand-panel]')) return;
+    observer.observe(item);
+  });
 }
 
 
@@ -670,6 +698,7 @@ window.addEventListener('load', async () => {
   initCarousel();
   initProofs();
   initPhaseSliders();
+  initExpandableSections();
   initRevealObserver();
   await runLoader();
   initHeroAnimations();
