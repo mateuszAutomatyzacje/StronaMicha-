@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://strona-micha.pages.dev/sitemap.xml
