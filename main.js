@@ -597,6 +597,7 @@ function initExpandableSections() {
     gsap.set(cards, { opacity: 0, y: 28, scale: 0.96 });
 
     button.addEventListener('click', () => {
+      panel.hidden = false;
       panel.classList.remove('is-collapsed');
       panel.classList.add('is-expanded');
       button.setAttribute('aria-expanded', 'true');

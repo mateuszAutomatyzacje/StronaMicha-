@@ -3026,8 +3026,9 @@ body.quote-modal-open {
 .section-split-head .section-more-btn {
   margin-top: 18px;
 }
+[data-expand-panel][hidden],
 .expandable-grid.is-collapsed {
-  display: none;
+  display: none !important;
 }
 .expandable-grid.is-expanded {
   display: grid;
