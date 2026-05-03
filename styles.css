@@ -2321,8 +2321,9 @@ body.is-intro-revealing footer {
 
 /* Final hero brightness balance after reveal QA */
 .hero-premium .hero-backdrop-image {
-  background-image: linear-gradient(105deg, rgba(5,5,5,.18), rgba(5,5,5,.32)), url('assets/img18.jpg');
-  filter: saturate(1.12) contrast(1.06) brightness(1.12);
+  background-image: linear-gradient(105deg, rgba(5,5,5,.18), rgba(5,5,5,.32)), url('assets/progress/buildmasters-hero-reference.png');
+  filter: saturate(1.08) contrast(1.04) brightness(.94);
+  background-position: center top;
 }
 .hero-backdrop-vignette {
   background:
