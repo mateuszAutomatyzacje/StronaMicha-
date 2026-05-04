@@ -2,14 +2,16 @@ import * as THREE from './assets/vendor/three/three.module.js';
 import { gsap } from './assets/vendor/gsap/index.js';
 
 const imageData = [
-  { src: 'assets/img18.jpg', title: 'Premium bathroom finish', text: 'A complete bathroom view showing the final standard: light, surfaces, fittings and a calm premium finish.' },
-  { src: 'assets/img22.jpg', title: 'Stone and warm metal', text: 'Warm metal accents and deep stone texture help the work feel considered, modern and high-end.' },
-  { src: 'assets/img20.jpg', title: 'Pattern and contrast', text: 'A stronger tile pattern adds character while keeping the installation clean and controlled.' },
-  { src: 'assets/img19.jpg', title: 'Joinery and LED detail', text: 'Vertical light, clean planes and fitted details show the quality clients notice every day.' },
-  { src: 'assets/img21.jpg', title: 'Shower zone', text: 'Close detail on fittings, glass and finish builds confidence in the installation quality.' },
-  { src: 'assets/img17.jpg', title: 'Finish line detail', text: 'Corners, grout lines and surface transitions show the standard better than generic sales copy.' },
-  { src: 'assets/img16.jpg', title: 'Soft minimal finish', text: 'A lighter project balances the dark showcase and shows the process works across styles.' },
-  { src: 'assets/img14.jpg', title: 'Material depth', text: 'Texture, light and layered materials create a premium impression without shouting.' }
+  { src: 'assets/img05.jpg', title: 'Feature niche close-up', text: 'Detail work around the illuminated niche shows precision in the finish.' },
+  { src: 'assets/img11.jpg', title: 'Textured shelf detail', text: 'Close material texture and shelf finish highlight craftsmanship.' },
+  { src: 'assets/img22.jpg', title: 'Green tile bathroom', text: 'A different colour palette shows range across bathroom styles.' },
+  { src: 'assets/img25.jpg', title: 'Premium family bathroom', text: 'Full-room composition with shower, vanity and coordinated finishes.' },
+  { src: 'assets/img10.jpg', title: 'Shower room overview', text: 'A wider angle helps clients understand layout, glass and joinery.' },
+  { src: 'assets/img25.jpg', title: 'Mirror and vanity', text: 'Mirror, vanity and black fittings create a crisp modern contrast.' },
+  { src: 'assets/img26.jpg', title: 'Marble wall detail', text: 'Large marble-effect slabs give the room a bright high-end finish.' },
+  { src: 'assets/img27.jpg', title: 'Bronze frame bathroom', text: 'A framed shower enclosure gives this room a distinctive character.' },
+  { src: 'assets/img14.jpg', title: 'Shower zone', text: 'Close detail on fittings, glass and finish builds confidence in the installation quality.' },
+  { src: 'assets/img02.jpg', title: 'Feature bathroom finish', text: 'A final polished angle completes the project story in the portfolio.' }
 ];
 
 const proofData = [

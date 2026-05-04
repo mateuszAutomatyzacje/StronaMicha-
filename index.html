@@ -53,7 +53,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260504-0200">
+  <link rel="stylesheet" href="styles.css?v=20260504-0626">
 </head>
 <body>
   <div class="site-loader premium-loader" id="site-loader" aria-hidden="true">
@@ -114,7 +114,6 @@
         <div class="hero-backdrop-image"></div>
         <div class="hero-backdrop-vignette"></div>
         <div class="hero-backdrop-grid"></div>
-        <div class="background-word">DETAIL</div>
       </div>
 
       <div class="container hero-shell">
@@ -133,6 +132,25 @@
         </div>
       </div>
     </section>
+
+    <section id="about-company" class="section section-dark about-company-section">
+      <div class="container about-company-grid">
+        <div class="about-company-title reveal-up">
+          <p class="eyebrow">About the company</p>
+          <h2>Build Masters Group Ltd — bathroom installation specialists.</h2>
+        </div>
+        <div class="about-company-copy reveal-up">
+          <p>We deliver full bathroom renovations, wetroom installations, plumbing, electrical work, wall and floor tiling, bathroom fitting, waterproofing, tanking and finishing touches across London and surrounding areas.</p>
+          <p>The goal is simple: reliable service, clean modern finishes and a managed process from quote to handover.</p>
+          <div class="about-company-cards">
+            <a class="about-company-card" href="tel:+447355343226"><strong>Call: 07355 343226</strong></a>
+            <a class="about-company-card about-company-card-wide" href="mailto:buildmastersgroup@gmail.com"><strong>Email: buildmastersgroup@gmail.com</strong></a>
+            <div class="about-company-card"><strong>London &amp; surrounding areas</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="process" class="section section-process premium-process">
       <div class="container">
@@ -160,11 +178,6 @@
             <button type="button" class="btn btn-small section-more-btn" data-expand-target="services-more" aria-expanded="false">Show more</button>
           </div>
         </div>
-        <div class="services-contact-strip reveal-up">
-          <span>Talk through the scope</span>
-          <a href="tel:+447355343226">07355 343226</a>
-          <a href="mailto:buildmastersgroup@gmail.com">buildmastersgroup@gmail.com</a>
-        </div>
         <div class="service-grid expandable-grid is-collapsed" id="services-more" data-expand-panel hidden>
           <article class="service-card reveal-up"><span>01</span><h3>Full Bathroom Renovations</h3><p>Complete bathroom renovation service from strip-out to final finish.</p></article>
           <article class="service-card reveal-up"><span>02</span><h3>Wetroom Installations</h3><p>Wetroom layouts prepared around drainage, waterproofing, tiling and clean installation.</p></article>
@@ -182,7 +195,7 @@
       <div class="container slider-head">
         <div class="slider-head-copy">
           <p class="eyebrow">Work / 3D gallery</p>
-          <h2>Portfolio with 3D depth.</h2>
+          <h2>Portfolio</h2>
         </div>
       </div>
 
@@ -219,14 +232,11 @@
     <section id="transformations" class="section transformations-section">
       <div class="container">
         <p class="eyebrow">Before / during / after</p>
-        <h2>A visible process, not just a promise.</h2>
-        <p class="section-lead">Each card has three stages. Move the slider to see the project progress from preparation, through installation, to a premium finished result.</p>
         <div class="transformations-grid" id="transformations-grid">
           <article class="phase-card reveal-up" data-phase-card>
             <div class="phase-card-head">
               <span>Case 01</span>
               <strong>Shower zone and recess</strong>
-              <p>A stripped-out bathroom, a visible rebuild, and a finished shower zone with clean detailing.</p>
             </div>
             <div class="phase-stage" data-phase-stage>
               <img src="assets/progress/case-01-before.jpg" alt="Before renovation, old bathtub and stripped bathroom walls" class="phase-image is-active" data-phase-image>
@@ -329,11 +339,19 @@
 
     <section id="call" class="section call-section">
       <div class="container call-box">
-        <div>
+        <div class="call-copy">
           <p class="eyebrow">Call Build Masters Group Ltd</p>
           <h2>Speak directly about your bathroom project.</h2>
         </div>
-        <a class="call-number" href="tel:+447355343226" aria-label="Call Build Masters Group Ltd on 07355 343226">07355 343226</a>
+        <div class="call-signature-card reveal-up">
+          <p class="call-card-kicker">Direct line</p>
+          <a class="call-number" href="tel:+447355343226" aria-label="Call Build Masters Group Ltd on 07355 343226">07355 343226</a>
+          <div class="call-card-meta">
+            <span>Talk through the scope</span>
+            <a href="mailto:buildmastersgroup@gmail.com">buildmastersgroup@gmail.com</a>
+            <span>London &amp; surrounding areas</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -423,6 +441,6 @@
     });
   </script>
 
-  <script type="module" src="main.js?v=20260504-0200"></script>
+  <script type="module" src="main.js?v=20260504-0626"></script>
 </body>
 </html>
