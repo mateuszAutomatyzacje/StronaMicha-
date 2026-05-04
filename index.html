@@ -53,7 +53,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260427-1252">
+  <link rel="stylesheet" href="styles.css?v=20260504-0200">
 </head>
 <body>
   <div class="site-loader premium-loader" id="site-loader" aria-hidden="true">
@@ -73,6 +73,7 @@
       <article class="intro-panel" data-intro-stage="before" style="--intro-bg:url('assets/progress/bath-01-before.jpg')"></article>
       <article class="intro-panel" data-intro-stage="craft" style="--intro-bg:url('assets/progress/bath-01-during.jpg')"></article>
       <article class="intro-panel" data-intro-stage="finish" style="--intro-bg:url('assets/img18.jpg')"></article>
+      <article class="intro-panel intro-panel-video" data-intro-stage="porsche" style="--intro-bg:url('assets/img18.jpg')"><video src="assets/luma-intro-2026-05-04/04-modern-luxurious-bathroom.mp4" muted playsinline preload="metadata" poster="assets/img18.jpg"></video></article>
     </div>
     <div class="intro-reveal-shade"></div>
     <div class="intro-reveal-content">
@@ -80,7 +81,7 @@
       <strong id="intro-title">Before</strong>
       <p id="intro-text">We start with the real condition of the room.</p>
       <div class="intro-progress"><span id="intro-progress-bar"></span></div>
-      <div class="intro-steps"><span>Before</span><span>Craft</span><span>Finish</span></div>
+      <div class="intro-steps"><span>Before</span><span>Craft</span><span>Finish</span><span>Final</span></div>
     </div>
   </div>
 
@@ -109,6 +110,7 @@
     <section id="start" class="hero hero-immersive hero-premium">
       <div class="hero-backdrop" aria-hidden="true">
         <canvas class="hero-webgl" id="hero-webgl"></canvas>
+        <video class="hero-bg-video" id="hero-bg-video" src="assets/luma-intro-2026-05-04/04-modern-luxurious-bathroom.mp4" muted playsinline loop autoplay preload="metadata" poster="assets/img18.jpg"></video>
         <div class="hero-backdrop-image"></div>
         <div class="hero-backdrop-vignette"></div>
         <div class="hero-backdrop-grid"></div>
@@ -127,46 +129,6 @@
             <li>Reliable and professional service</li>
             <li>Insured workmanship and start-to-finish project management</li>
             <li>Clean, modern finishes with references available upon request</li>
-          </ul>
-        </div>
-
-        <div class="hero-stage reveal-on-load hero-depth-stage" aria-label="Premium bathroom reveal">
-          <div class="reveal-stack" id="reveal-stack">
-            <article class="reveal-panel is-active" data-stage="before" style="--bg:url('assets/progress/bath-01-before.jpg')">
-              <div class="reveal-info"><span>01 / Before</span><strong>First, we assess the space, substrate and installation layout.</strong></div>
-            </article>
-            <article class="reveal-panel" data-stage="craft" style="--bg:url('assets/progress/bath-01-during.jpg')">
-              <div class="reveal-info"><span>02 / Craft</span><strong>Then waterproofing, tiling, fitting and detailed quality control.</strong></div>
-            </article>
-            <article class="reveal-panel" data-stage="finish" style="--bg:url('assets/img18.jpg')">
-              <div class="reveal-info"><span>03 / Handover</span><strong>Finally, a clean handover with a premium finish.</strong></div>
-            </article>
-          </div>
-
-          <div class="hero-stage-ui hero-reveal-ui" aria-hidden="true">
-            <div class="hero-stage-chip">Before → Craft → Finish</div>
-            <div class="hero-stage-progress"><span id="hero-progress"></span></div>
-            <div class="hero-reveal-steps">
-              <span>Before</span><span>Craft</span><span>Finish</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a href="#quality" class="scroll-indicator" aria-label="Scroll to the next section">Scroll</a>
-    </section>
-
-    <section id="quality" class="section section-dark statement-section">
-      <div class="container statement-grid">
-        <div>
-          <p class="eyebrow">About the company</p>
-          <h2>Build Masters Group Ltd — bathroom installation specialists.</h2>
-        </div>
-        <div>
-          <p class="statement-copy">We deliver full bathroom renovations, wetroom installations, plumbing, electrical work, wall and floor tiling, bathroom fitting, waterproofing, tanking and finishing touches across London and surrounding areas. The goal is simple: reliable service, clean modern finishes and a managed process from quote to handover.</p>
-          <ul class="company-fact-list">
-            <li>Call: 07355 343226</li>
-            <li>Email: buildmastersgroup@gmail.com</li>
-            <li>London & surrounding areas</li>
           </ul>
         </div>
       </div>
@@ -461,6 +423,6 @@
     });
   </script>
 
-  <script type="module" src="main.js?v=20260427-1256"></script>
+  <script type="module" src="main.js?v=20260504-0200"></script>
 </body>
 </html>

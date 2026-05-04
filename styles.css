@@ -3194,3 +3194,40 @@ body.quote-modal-open {
   content: none !important;
   animation: none !important;
 }
+
+
+/* Local 2026-05-04: MP4 as final intro slide + hero background */
+.intro-panel-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .32s ease;
+}
+.intro-panel-video.is-active video { opacity: 1; }
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  filter: saturate(1.04) contrast(1.04) brightness(.82);
+  pointer-events: none;
+}
+.hero-premium .hero-backdrop-image {
+  z-index: 2;
+  background-image: linear-gradient(105deg, rgba(5,5,5,.32), rgba(5,5,5,.44));
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+}
+@media (max-width: 760px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero-bg-video { display: none; }
+  .hero-premium .hero-backdrop-image {
+    background-image: linear-gradient(105deg, rgba(5,5,5,.38), rgba(5,5,5,.52)), url('assets/img18.jpg');
+  }
+}

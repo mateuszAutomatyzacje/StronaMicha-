@@ -27,6 +27,7 @@ const siteLoader = document.getElementById('site-loader');
 const siteLoaderProgress = document.getElementById('site-loader-progress');
 const siteLoaderLabel = document.getElementById('site-loader-label');
 const introReveal = document.getElementById('intro-reveal');
+const heroBgVideo = document.getElementById('hero-bg-video');
 const introPanels = [...document.querySelectorAll('.intro-panel')];
 const introTitle = document.getElementById('intro-title');
 const introText = document.getElementById('intro-text');
@@ -210,6 +211,11 @@ function startHeroAutoplay() {
 }
 
 function finishIntroReveal() {
+  introPanels.forEach(panel => {
+    const video = panel.querySelector('video');
+    if (video) { try { video.pause(); video.currentTime = 0; } catch {} }
+  });
+  if (heroBgVideo) { heroBgVideo.muted = true; heroBgVideo.playsInline = true; heroBgVideo.play().catch(() => {}); }
   if (introReveal) {
     introReveal.classList.remove('is-running');
     introReveal.classList.add('is-hidden');
@@ -225,11 +231,18 @@ function setIntroStage(index) {
   const stages = [
     { title: 'Before', text: 'We start with the real condition of the room.' },
     { title: 'Craft', text: 'Waterproofing, tiling, fitting and detail control.' },
-    { title: 'Finish', text: 'A clean handover with a premium bathroom finish.' }
+    { title: 'Finish', text: 'A clean handover with a premium bathroom finish.' },
+    { title: 'Final', text: 'The final luxury bathroom frame bridges directly into the homepage.' }
   ];
   introPanels.forEach((panel, panelIndex) => {
-    panel.classList.toggle('is-active', panelIndex === index);
+    const isActive = panelIndex === index;
+    panel.classList.toggle('is-active', isActive);
     panel.classList.toggle('is-past', panelIndex < index);
+    const video = panel.querySelector('video');
+    if (video) {
+      if (isActive) { video.currentTime = 0; video.muted = true; video.playsInline = true; video.play().catch(() => {}); }
+      else { try { video.pause(); } catch {} }
+    }
   });
   if (introTitle) introTitle.textContent = stages[index]?.title || stages[0].title;
   if (introText) introText.textContent = stages[index]?.text || stages[0].text;
@@ -259,18 +272,19 @@ function initHeroAnimations() {
   const revealTimers = [
     window.setTimeout(() => setIntroStage(1), 950),
     window.setTimeout(() => setIntroStage(2), 1850),
+    window.setTimeout(() => setIntroStage(3), 2850),
     window.setTimeout(() => {
       gsap.to(introReveal, { opacity: 0, scale: 1.015, duration: 0.62, ease: 'power3.inOut', overwrite: true, onComplete: () => {
         gsap.set(introReveal, { clearProps: 'opacity,transform' });
         finishIntroReveal();
       }});
-    }, 2850)
+    }, 4300)
   ];
 
   window.setTimeout(() => {
     revealTimers.forEach(timer => window.clearTimeout(timer));
     finishIntroReveal();
-  }, 4700);
+  }, 5600);
 }
 
 function createCards() {
@@ -694,13 +708,27 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-window.addEventListener('load', async () => {
+async function bootstrapPage() {
   initHeroScene();
   initCarousel();
   initProofs();
   initPhaseSliders();
   initExpandableSections();
   initRevealObserver();
-  await runLoader();
+  await Promise.race([
+    runLoader(),
+    new Promise(resolve => window.setTimeout(() => {
+      body.classList.remove('is-loading');
+      body.classList.add('is-loaded');
+      siteLoader?.classList.add('is-hidden');
+      resolve();
+    }, 2000))
+  ]);
   initHeroAnimations();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrapPage, { once: true });
+} else {
+  bootstrapPage();
+}
