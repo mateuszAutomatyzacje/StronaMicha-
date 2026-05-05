@@ -3229,6 +3229,9 @@ body.quote-modal-open {
   opacity: 0;
   transition: opacity .32s ease;
 }
+.intro-panel-video.is-active {
+  filter: saturate(1.04) contrast(1.04) brightness(.82) blur(0);
+}
 .intro-panel-video.is-active video { opacity: 1; }
 .hero-bg-video {
   position: absolute;
