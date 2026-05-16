@@ -4,3 +4,24 @@ preview-*.png
 contact-sheet.jpg
 
 playwright-*.png
+
+.code-brain/
+
+# Dev screenshots produced by chrome-devtools / playwright MCP during iteration
+.playwright-mcp/
+about-company-with-map.png
+audiences.png
+b2b-hero.png
+b2b-hero*.png
+faq.png
+faq-v*.png
+hero-b2b-*.png
+hero-mobile*.png
+hero-viewport.png
+hero-with-b2b-card.png
+homepage-desktop-full.png
+homepage-hero-v2.png
+homepage-partners-gate.png
+mobile-hero.png
+partners.png
+subpage-hero.png
